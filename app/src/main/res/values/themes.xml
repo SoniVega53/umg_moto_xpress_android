@@ -1,0 +1,27 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.Umg_moto_xpress_android" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="android:textColor">@color/white</item>
+        <item name="colorPrimary">@color/primaryBlue</item>
+        <item name="colorSecondary">@color/secondGreen</item>
+        <item name="colorPrimaryDark">@color/primaryDarkBlue</item>
+        <item name="colorAccent">@color/primaryGreen</item>
+        <item name="android:textSize">12dp</item>
+        <item name="android:windowBackground">@color/primaryDarkBlack</item>
+        <item name="android:windowActivityTransitions">true</item>
+        <item name="android:windowEnterTransition">@android:transition/slide_right</item>
+        <item name="android:windowExitTransition">@android:transition/slide_left</item>
+
+        <item name="android:radioButtonStyle">@style/CustomRadioButton</item>
+    </style>
+
+    <style name="Theme.Umg_moto_xpress_android" parent="Base.Theme.Umg_moto_xpress_android" />
+
+
+    <style name="CustomRadioButton" parent="Widget.AppCompat.CompoundButton.RadioButton">
+        <item name="android:textColor">@color/primaryDarkBlack</item> <!-- Cambia el color del texto -->
+        <item name="android:textSize">16sp</item>                <!-- Cambia el tamaño del texto -->
+        <item name="android:button">@drawable/radio_button_animated</item> <!-- Cambia el botón -->
+        <item name="android:padding">8dp</item>                   <!-- Agrega padding -->
+    </style>
+</resources>

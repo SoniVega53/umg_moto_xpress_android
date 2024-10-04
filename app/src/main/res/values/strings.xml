@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">MotoXpress</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="title_home">MotoXpress UMG</string>
+    <string name="descrip_home">¡Ya disponible! Renta tu motocicleta de manera fácil y segura. Explora nuestra amplia selección de motos
+        de las mejores marcas.
+    </string>
+    <string name="subtitle_home">Motocicletas Disponibles:</string>
+
+
+    <string name="all_biker">Todos</string>
+    <string name="cte_biker">Categoría</string>
+    <string name="zn_biker">Zona</string>
+    <string name="va_biker">Valor Renta</string>
+    <string name="ca_biker">Capacidad</string>
+    <string name="di_biker">Disponibilidad</string>
+    <string name="ki_biker">Kilometraje</string>
+
+
+
+</resources>
