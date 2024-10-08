@@ -16,12 +16,34 @@ public class MainActivity extends AppCompatActivity implements InterfaceMainActi
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        binding.constraLoading.setOnClickListener(view -> {});
+
+
     }
 
     @Override
     public void hiddenShowNavbar(boolean isHidden) {
         try {
             binding.consNavBar.setVisibility(isHidden ? View.GONE:View.VISIBLE);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void loadingShow(boolean isShow) {
+        try {
+            binding.constraLoading.setVisibility(isShow ? View.VISIBLE:View.GONE);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void logout(View.OnClickListener listener) {
+        try {
+            binding.logout.setOnClickListener(listener);
         }catch (Exception e){
             e.printStackTrace();
         }

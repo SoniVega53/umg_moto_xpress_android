@@ -14,6 +14,8 @@ import android.view.ViewGroup;
 
 import com.example.umg_moto_xpress_android.R;
 import com.example.umg_moto_xpress_android.databinding.FragmentHomeBinding;
+import com.example.umg_moto_xpress_android.tools.SharedPreferencesTool;
+import com.example.umg_moto_xpress_android.tools.StringTool;
 import com.example.umg_moto_xpress_android.ui.biker.ListBikerFragment;
 
 
@@ -31,6 +33,7 @@ public class HomeFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentHomeBinding.inflate(inflater,container,false);
+        functionFocusFragment(binding.getRoot());
 
         if (savedInstanceState == null) {
             Fragment newFragment = new ListBikerFragment();
@@ -40,6 +43,12 @@ public class HomeFragment extends BaseFragment {
         }
 
         onBackPressedCall(null);
+
+        logout(view -> {
+            clearOnBackPressedCall();
+            SharedPreferencesTool.writeSecureString(requireActivity(), StringTool.LOGIN_SESSION,"");
+            Navigation.findNavController(binding.getRoot()).popBackStack(R.id.loginFragment,false);
+        });
 
         return binding.getRoot();
     }
