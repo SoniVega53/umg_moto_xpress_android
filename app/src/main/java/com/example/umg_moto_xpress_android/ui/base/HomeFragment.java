@@ -2,7 +2,11 @@ package com.example.umg_moto_xpress_android.ui.base;
 
 import android.os.Bundle;
 
+import androidx.activity.OnBackPressedCallback;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,7 +24,7 @@ public class HomeFragment extends BaseFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        hiddenShowNavBar(false);
     }
 
     @Override
@@ -35,6 +39,10 @@ public class HomeFragment extends BaseFragment {
                     .commit();
         }
 
+        onBackPressedCall(null);
+
         return binding.getRoot();
     }
+
+
 }
