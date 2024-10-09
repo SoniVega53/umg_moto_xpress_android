@@ -10,8 +10,11 @@
     <string name="txt_password">Contraseña</string>
     <string name="accept">Aceptar</string>
     <string name="register">Registrar</string>
+    <string name="login">Iniciar</string>
     <string name="message_error">Surgió algo inesperado</string>
     <string name="title_error">!Lo sentimos!</string>
+    <string name="logout">Cerrar Sesión</string>
+    <string name="logout_message">Está Seguro de querer cerrar sesión</string>
 
 
     <string name="all_biker">Todos</string>

@@ -53,6 +53,10 @@ public class LoginFragment extends BaseFragment {
         setListenerTextWatcher(binding.txtEditUser);
         setListenerTextWatcher(binding.txtEditPass);
 
+        binding.txtRegister.setOnClickListener(view -> {
+            Navigation.findNavController(binding.getRoot()).navigate(R.id.action_loginFragment_to_registerFragment);
+        });
+
         return binding.getRoot();
     }
 
@@ -86,15 +90,15 @@ public class LoginFragment extends BaseFragment {
                         break;
                     case StringTool.ERROR:
                         if (loginResponse.getResponse() != null){
-                            dialogMessage(getString(R.string.title_error),loginResponse.getResponse().getMessage());
+                            dialogMessage(getString(R.string.title_error),loginResponse.getResponse().getMessage(),1);
                         }else {
-                            dialogMessage(getString(R.string.title_error),getString(R.string.message_error));
+                            dialogMessage(getString(R.string.title_error),getString(R.string.message_error),2);
                         }
                         break;
                 }
                 loadingShow(false);
             }catch (Exception e){
-                dialogMessage(getString(R.string.title_error),getString(R.string.message_error));
+                dialogMessage(getString(R.string.title_error),getString(R.string.message_error),2);
                 loadingShow(false);
             }
         });

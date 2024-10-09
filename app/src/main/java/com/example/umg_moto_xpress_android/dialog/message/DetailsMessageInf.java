@@ -19,10 +19,12 @@ public class DetailsMessageInf extends BaseDialog {
     private String message;
     private String txtButton;
     private OnClick lis;
+    private int type = 0;
 
-    public DetailsMessageInf(String title, String message) {
+    public DetailsMessageInf(String title, String message,int type) {
         this.title = title != null ? title : "";
         this.message = message != null ? message : "";
+        this.type = type;
     }
     public DetailsMessageInf(String title, String message,String txtButton) {
         this.title = title;
@@ -57,9 +59,15 @@ public class DetailsMessageInf extends BaseDialog {
 
         binding.btnContinue.setOnClickListener(view -> {
             if (lis != null)
-                lis.onClick();
+                lis.onClick(view);
             dismiss();
         });
+
+        if (type > -1)
+            binding.imgAlert.setImageResource(type == 0 ? R.drawable.exclamation_triangle_solid :
+                type == 1 ? R.drawable.exclamation_circle_solid : R.drawable.error_solid);
+        else
+            binding.imgAlert.setVisibility(View.GONE);
 
         return binding.getRoot();
     }

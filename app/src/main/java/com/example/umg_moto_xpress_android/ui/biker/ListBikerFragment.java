@@ -40,6 +40,10 @@ public class ListBikerFragment extends BaseFragment {
         bikerList.add(new BikerItemModel("Biker 1","","200"));
         bikerList.add(new BikerItemModel("Biker 2","","200"));
         bikerList.add(new BikerItemModel("Biker 3","","200"));
+        bikerList.add(new BikerItemModel("Biker 3","","200"));
+        bikerList.add(new BikerItemModel("Biker 3","","200"));
+        bikerList.add(new BikerItemModel("Biker 3","","200"));
+        bikerList.add(new BikerItemModel("Biker 3","","200"));
 
         adapterRecyclerView = new ListBikerAdapterRecyclerView(bikerList);
 

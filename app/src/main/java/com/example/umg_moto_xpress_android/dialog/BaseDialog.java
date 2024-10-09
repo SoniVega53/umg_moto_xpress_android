@@ -39,7 +39,7 @@ public class BaseDialog extends DialogFragment {
     }
 
     public interface OnClick{
-        void onClick();
+        void onClick(View view);
     }
 
     public interface OnClickType{

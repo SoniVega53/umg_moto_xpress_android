@@ -76,13 +76,18 @@ public class BaseFragment extends Fragment {
         });
     }
 
-    protected void dialogMessage(String title,String message){
+    protected void dialogMessage(String title,String message,int type){
         if (focusFragment){
-            DetailsMessageInf eliDia= new DetailsMessageInf(title,message);
-            eliDia.setLis(() -> {
+            DetailsMessageInf eliDia= new DetailsMessageInf(title,message,type);
+            eliDia.show(getChildFragmentManager(), DetailsMessageInf.TAG);
+            focusFragment = false;
+        }
+    }
 
-            });
-
+    protected void dialogMessage(String title,String message,int type, View.OnClickListener listener){
+        if (focusFragment){
+            DetailsMessageInf eliDia = new DetailsMessageInf(title,message,type);
+            eliDia.setLis(listener::onClick);
             eliDia.show(getChildFragmentManager(), DetailsMessageInf.TAG);
             focusFragment = false;
         }
