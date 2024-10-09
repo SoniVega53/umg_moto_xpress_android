@@ -95,6 +95,7 @@ public class LoginFragment extends BaseFragment {
                 loadingShow(false);
             }catch (Exception e){
                 dialogMessage(getString(R.string.title_error),getString(R.string.message_error));
+                loadingShow(false);
             }
         });
     }
