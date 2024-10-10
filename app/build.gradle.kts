@@ -17,7 +17,12 @@ android {
     }
 
     buildTypes {
+        debug {
+            buildConfigField("String","BASE_URL","\"https://localhost:9090\"")
+        }
+
         release {
+            buildConfigField("String","BASE_URL","\"https://localhost:9090\"")
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
@@ -30,6 +35,7 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
     buildFeatures {
+        buildConfig = true
         viewBinding = true
     }
 }
@@ -43,7 +49,18 @@ dependencies {
     implementation(libs.navigation.fragment)
     implementation(libs.navigation.ui)
     implementation(libs.legacy.support.v4)
+    implementation(libs.annotation)
+    implementation(libs.lifecycle.livedata.ktx)
+    implementation(libs.lifecycle.viewmodel.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+
+    //Secure Preferences
+    implementation("com.scottyab:secure-preferences-lib:0.1.7")
+
+    //retrofit
+    implementation("com.squareup.retrofit2:retrofit:2.1.0")
+    implementation("com.google.code.gson:gson:2.6.2")
+    implementation("com.squareup.retrofit2:converter-gson:2.1.0")
 }
