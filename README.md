@@ -1,4 +1,4 @@
-> .[!NOTE]
+> .[!NOTE].
 > Versión android studio:
 Android Studio Koala Feature Drop | 2024.1.2
 Build #AI-241.18034.62.2412.12266719, built on August 22, 2024
