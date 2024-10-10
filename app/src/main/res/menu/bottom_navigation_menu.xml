@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/home"
+        android:enabled="true"
+        android:icon="@drawable/home_solid"
+        android:title="Home"/>
+
+    <item
+        android:id="@+id/reservation"
+        android:enabled="true"
+        android:icon="@drawable/motorcycle_solid"
+        android:title="Reservaciones"/>
+
+    <item
+        android:id="@+id/process"
+        android:enabled="true"
+        android:icon="@drawable/toolbox_solid"
+        android:title="Gestiones"/>
+
+</menu>

@@ -6,6 +6,15 @@
         de las mejores marcas.
     </string>
     <string name="subtitle_home">Motocicletas Disponibles:</string>
+    <string name="txt_user">Nombre de Usuario</string>
+    <string name="txt_password">Contraseña</string>
+    <string name="accept">Aceptar</string>
+    <string name="register">Registrar</string>
+    <string name="login">Iniciar</string>
+    <string name="message_error">Surgió algo inesperado</string>
+    <string name="title_error">!Lo sentimos!</string>
+    <string name="logout">Cerrar Sesión</string>
+    <string name="logout_message">Está Seguro de querer cerrar sesión</string>
 
 
     <string name="all_biker">Todos</string>
@@ -15,7 +24,17 @@
     <string name="ca_biker">Capacidad</string>
     <string name="di_biker">Disponibilidad</string>
     <string name="ki_biker">Kilometraje</string>
-
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome!"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>
