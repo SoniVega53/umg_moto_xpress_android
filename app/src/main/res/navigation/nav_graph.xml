@@ -10,14 +10,12 @@
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
-            android:id="@+id/action_homeFragment_to_listBikerFragment"
-            app:destination="@id/listBikerFragment" />
+            android:id="@+id/action_homeFragment_to_reservationBikerFragment"
+            app:destination="@id/reservationBikerFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_createBikerFragment"
+            app:destination="@id/createBikerFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/listBikerFragment"
-        android:name="com.example.umg_moto_xpress_android.ui.biker.ListBikerFragment"
-        android:label="fragment_list_biker"
-        tools:layout="@layout/fragment_list_biker" />
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.example.umg_moto_xpress_android.ui.login.LoginFragment"
@@ -35,4 +33,15 @@
         android:name="com.example.umg_moto_xpress_android.ui.login.RegisterFragment"
         android:label="fragment_register"
         tools:layout="@layout/fragment_register" />
+    <fragment
+        android:id="@+id/reservationBikerFragment"
+        android:name="com.example.umg_moto_xpress_android.ui.biker.ReservationBikerFragment"
+        android:label="fragment_reservation_biker"
+        tools:layout="@layout/fragment_reservation_biker" />
+    <fragment
+        android:id="@+id/createBikerFragment"
+        android:name="com.example.umg_moto_xpress_android.ui.biker.CreateBikerFragment"
+        android:label="fragment_create_biker"
+        tools:layout="@layout/fragment_create_biker" />
+
 </navigation>

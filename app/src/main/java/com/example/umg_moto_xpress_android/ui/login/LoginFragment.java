@@ -47,14 +47,16 @@ public class LoginFragment extends BaseFragment {
         functionFocusFragment(binding.getRoot());
 
         binding.btnAccept.setOnClickListener(view -> {
-            getServiceLogin();
+            //getServiceLogin();
+            navigation(binding.getRoot(),R.id.action_loginFragment_to_homeFragment);
+            clearInputs();
         });
 
         setListenerTextWatcher(binding.txtEditUser);
         setListenerTextWatcher(binding.txtEditPass);
 
         binding.txtRegister.setOnClickListener(view -> {
-            Navigation.findNavController(binding.getRoot()).navigate(R.id.action_loginFragment_to_registerFragment);
+            navigation(binding.getRoot(),R.id.action_loginFragment_to_registerFragment);
         });
 
         return binding.getRoot();
@@ -85,7 +87,7 @@ public class LoginFragment extends BaseFragment {
                 switch (loginResponse.getStatus()){
                     case StringTool.SUCCESS:
                         SharedPreferencesTool.writeSecureString(requireActivity(),StringTool.LOGIN_SESSION,loginResponse.getResponse().getEntityResponse().getToken());
-                        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_loginFragment_to_homeFragment);
+                        navigation(binding.getRoot(),R.id.action_loginFragment_to_homeFragment);
                         clearInputs();
                         break;
                     case StringTool.ERROR:

@@ -19,9 +19,17 @@
 
 
     <style name="CustomRadioButton" parent="Widget.AppCompat.CompoundButton.RadioButton">
-        <item name="android:textColor">@color/primaryDarkBlack</item> <!-- Cambia el color del texto -->
+        <item name="android:textColor">@color/primaryDarkBlack
+        </item> <!-- Cambia el color del texto -->
         <item name="android:textSize">16sp</item>                <!-- Cambia el tamaño del texto -->
         <item name="android:button">@drawable/radio_button_animated</item> <!-- Cambia el botón -->
         <item name="android:padding">8dp</item>                   <!-- Agrega padding -->
     </style>
+
+    <declare-styleable name="CustomAttributesSpinner">
+        <attr name="textTitleHide" format="string"/>
+        <attr name="colorTextTitleSelect" format="integer"/>
+        <attr name="colorTextTitle" format="integer"/>
+        <attr name="colorTextItemOption" format="integer"/>
+    </declare-styleable>
 </resources>

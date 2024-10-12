@@ -18,8 +18,6 @@ public class MainActivity extends AppCompatActivity implements InterfaceMainActi
         setContentView(binding.getRoot());
 
         binding.constraLoading.setOnClickListener(view -> {});
-
-
     }
 
     @Override
