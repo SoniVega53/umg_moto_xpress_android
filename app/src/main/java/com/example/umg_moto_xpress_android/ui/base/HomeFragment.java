@@ -3,6 +3,7 @@ package com.example.umg_moto_xpress_android.ui.base;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 
+import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.view.LayoutInflater;
@@ -11,8 +12,12 @@ import android.view.ViewGroup;
 
 import com.example.umg_moto_xpress_android.R;
 import com.example.umg_moto_xpress_android.databinding.FragmentHomeBinding;
+import com.example.umg_moto_xpress_android.models.data.CarouselHomeData;
 import com.example.umg_moto_xpress_android.ui.biker.ListBikerFragment;
+import com.example.umg_moto_xpress_android.ui.carousel.CarouselFragment;
 import com.example.umg_moto_xpress_android.viewmodel.BikerListViewModel;
+
+import java.util.List;
 
 
 public class HomeFragment extends BaseFragment {
@@ -20,6 +25,7 @@ public class HomeFragment extends BaseFragment {
     private FragmentHomeBinding binding;
     private BikerListViewModel bikerListViewModel;
     private ListBikerFragment  listBikerFragment;
+    private List<CarouselHomeData> carouselHomeDataList;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -37,11 +43,14 @@ public class HomeFragment extends BaseFragment {
         functionFocusFragment(binding.getRoot());
         logoutLogin(binding.getRoot());
         onBackPressedCall(null);
-        bikerListViewModel.createListCarousel();
+        carouselHomeDataList = bikerListViewModel.createListCarouselHome(requireActivity());
 
         if (savedInstanceState == null) {
-            listBikerFragment = new ListBikerFragment();
+            listBikerFragment = new ListBikerFragment(true);
             addChildFragmentManager(listBikerFragment,binding.fragmentList.getId());
+
+            Fragment carousel = new CarouselFragment(true,false,false,carouselHomeDataList,null);
+            addChildFragmentManager(carousel,binding.carousel.getId());
         }
 
         binding.bottomNavigation.setOnNavigationItemSelectedListener(item -> {

@@ -1,7 +1,11 @@
 package com.example.umg_moto_xpress_android.viewmodel;
 
+import android.content.Context;
+
 import androidx.lifecycle.ViewModel;
 
+import com.example.umg_moto_xpress_android.R;
+import com.example.umg_moto_xpress_android.models.data.CarouselHomeData;
 import com.example.umg_moto_xpress_android.tools.DriveUrlConverter;
 
 import org.imaginativeworld.whynotimagecarousel.model.CarouselItem;
@@ -35,6 +39,63 @@ public class BikerListViewModel extends ViewModel {
                 DriveUrlConverter.convertDriveUrl("https://drive.google.com/file/d/1c8NasZBRawWdhWf50xcLnvjFJum0sCz6/view?usp=sharing")
         ));
 
+        return carouselItems;
+    }
+
+    public List<CarouselHomeData> createListCarouselHome(Context context){
+        List<CarouselHomeData> carouselItems = new ArrayList<>();
+
+        carouselItems.add(new CarouselHomeData(
+                context.getString(R.string.title_home),
+                context.getString(R.string.descrip_home),
+                new CarouselItem(
+                        R.drawable.biker_icon_option2
+                )
+        ));
+
+        carouselItems.add(new CarouselHomeData(
+                "Honda CBR 600RR",
+                "La Honda CBR 600RR es una moto deportiva de alto rendimiento, ideal para quienes buscan velocidad y agilidad. " +
+                        "Su motor de 599 cc ofrece una potencia impresionante en cualquier tipo de terreno.",
+                new CarouselItem(
+                        DriveUrlConverter.convertDriveUrl("https://drive.google.com/file/d/1NOt_alBkYi_500JewzFklbdkPhk7Tv5j/view?usp=drive_link")
+                )
+        ));
+
+        carouselItems.add(new CarouselHomeData(
+                "Kawasaki Ninja 400",
+                "La Kawasaki Ninja 400 destaca por su excelente balance entre rendimiento y accesibilidad. Con un motor " +
+                        "de 399 cc, es una moto ligera y maniobrable, perfecta tanto para principiantes como para experimentados.",
+                new CarouselItem(
+                        DriveUrlConverter.convertDriveUrl("https://drive.google.com/file/d/1YOHlDIcySyvptKhS6AB7f8WHBKvrbmXP/view?usp=sharing")
+                )
+        ));
+
+        carouselItems.add(new CarouselHomeData(
+                "Yamaha MT-07",
+                "Con un diseño dinámico y agresivo, la Yamaha MT-07 combina ligereza y potencia. " +
+                        "Su motor bicilíndrico de 689 cc es perfecto para quienes disfrutan de la ciudad y las carreteras abiertas.",
+                new CarouselItem(
+                        DriveUrlConverter.convertDriveUrl("https://drive.google.com/file/d/1gySbtdlzJFJehkeIlF1hpJoWTjsHIDF9/view?usp=drive_link")
+                )
+        ));
+
+        carouselItems.add(new CarouselHomeData(
+                context.getString(R.string.title_home),
+                context.getString(R.string.descrip_home),
+                new CarouselItem(
+                        DriveUrlConverter.convertDriveUrl("https://drive.google.com/file/d/1NF4AskIkao6O-UopPMjVf0ss5HAo_YoR/view?usp=sharing")
+                )
+        ));
+
+        carouselItems.add(new CarouselHomeData(
+               "BMW S1000RR",
+                "La BMW S1000RR es sinónimo de potencia bruta y tecnología de vanguardia. Con un motor de 999 cc y más de 200 caballos de fuerza," +
+                        " es una superbike diseñada para dominar cualquier pista.",
+                new CarouselItem(
+                        DriveUrlConverter.convertDriveUrl("https://drive.google.com/file/d/1c8NasZBRawWdhWf50xcLnvjFJum0sCz6/view?usp=sharing")
+                )
+        ));
 
         return carouselItems;
     }

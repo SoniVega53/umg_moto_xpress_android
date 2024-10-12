@@ -17,6 +17,8 @@ import com.example.umg_moto_xpress_android.R;
 import com.example.umg_moto_xpress_android.databinding.FragmentCarouselBinding;
 import com.example.umg_moto_xpress_android.databinding.ItemCardBikerBinding;
 import com.example.umg_moto_xpress_android.databinding.ItemCarouselBinding;
+import com.example.umg_moto_xpress_android.databinding.ItemCarouselHomeBinding;
+import com.example.umg_moto_xpress_android.models.data.CarouselHomeData;
 import com.example.umg_moto_xpress_android.tools.DriveUrlConverter;
 import com.example.umg_moto_xpress_android.tools.LocalStorageBase64;
 import com.example.umg_moto_xpress_android.ui.base.BaseFragment;
@@ -36,8 +38,10 @@ public class CarouselFragment extends BaseFragment {
     private FragmentCarouselBinding binding;
     private boolean isEditor = false;
     private List<CarouselItem> listCarouselItem;
+    private List<CarouselHomeData> carouselHomeDataList;
     private ActionButtonInterface anInterface;
     private boolean isBase64 = false;
+    private boolean isHome = false;
 
     public CarouselFragment() {
     }
@@ -45,6 +49,18 @@ public class CarouselFragment extends BaseFragment {
     public CarouselFragment(boolean isEditor,boolean isBase64,List<CarouselItem> listCarouselItem,ActionButtonInterface anInterface) {
         this.isEditor = isEditor;
         this.listCarouselItem = listCarouselItem;
+        this.anInterface = anInterface;
+        this.isBase64 = isBase64;
+    }
+
+    public CarouselFragment(boolean isHome,boolean isEditor,boolean isBase64,List<CarouselHomeData> carouselHomeDataList,ActionButtonInterface anInterface) {
+        this.isEditor = isEditor;
+        this.isHome = isHome;
+        this.carouselHomeDataList = carouselHomeDataList;
+        listCarouselItem = new ArrayList<>();
+        for (CarouselHomeData item:carouselHomeDataList) {
+            listCarouselItem.add(item.getCarouselItem());
+        }
         this.anInterface = anInterface;
         this.isBase64 = isBase64;
     }
@@ -65,15 +81,18 @@ public class CarouselFragment extends BaseFragment {
         if (listCarouselItem != null){
             if (!isEditor){
                 binding.carousel.setAutoPlay(true);
-                binding.carousel.setAutoPlayDelay(3000);
+                binding.carousel.setAutoPlayDelay(5000);
                 binding.carousel.start();
             }else {
                 binding.carousel.setCarouselGravity(CarouselGravity.START);
             }
 
             binding.carousel.setInfiniteCarousel(true);
-            binding.carousel.setCarouselListener(new CarouselAdapter());
             binding.carousel.setData(listCarouselItem);
+            if (!isHome)
+                binding.carousel.setCarouselListener(new CarouselAdapter());
+            else
+                binding.carousel.setCarouselListener(new CarouselAdapterHome());
         }
 
         return binding.getRoot();
@@ -108,6 +127,38 @@ public class CarouselFragment extends BaseFragment {
         @Override
         public ViewBinding onCreateViewHolder(@NonNull LayoutInflater layoutInflater, @NonNull ViewGroup viewGroup) {
             return ItemCarouselBinding.inflate(layoutInflater,viewGroup,false);
+        }
+
+        @Override
+        public void onClick(int i, @NonNull CarouselItem carouselItem) {
+
+        }
+
+        @Override
+        public void onLongClick(int i, @NonNull CarouselItem carouselItem) {
+
+        }
+    }
+
+    private class CarouselAdapterHome implements CarouselListener {
+
+        @Override
+        public void onBindViewHolder(@NonNull ViewBinding viewBinding, @NonNull CarouselItem carouselItem, int i) {
+            ItemCarouselHomeBinding currentBinding = (ItemCarouselHomeBinding) viewBinding;
+            if (carouselHomeDataList != null){
+               CarouselHomeData item = carouselHomeDataList.get(i);
+               currentBinding.txtTitle.setText(item.getTitle());
+               currentBinding.txtDes.setText(item.getDescription());
+            }
+
+
+            Utils.setImage(currentBinding.includeImage.imgFont, carouselItem);
+        }
+
+        @Nullable
+        @Override
+        public ViewBinding onCreateViewHolder(@NonNull LayoutInflater layoutInflater, @NonNull ViewGroup viewGroup) {
+            return ItemCarouselHomeBinding.inflate(layoutInflater,viewGroup,false);
         }
 
         @Override

@@ -55,11 +55,11 @@ public class ReservationBikerFragment extends BaseFragment {
         listCarouselItem = bikerListViewModel.createListCarousel();
 
         if (savedInstanceState == null) {
-            Fragment newFragment = new ListBikerFragment();
+            Fragment newFragment = new ListBikerFragment(false);
             addChildFragmentManager(newFragment,binding.fragmentList.getId());
 
-            Fragment carousel = new CarouselFragment(false,false,listCarouselItem,null);
-            addChildFragmentManager(carousel,binding.header.getId());
+//            Fragment carousel = new CarouselFragment(false,false,listCarouselItem,null);
+//            addChildFragmentManager(carousel,binding.carousel.getId());
         }
 
 

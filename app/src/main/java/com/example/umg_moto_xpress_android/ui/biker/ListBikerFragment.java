@@ -25,6 +25,11 @@ public class ListBikerFragment extends BaseFragment {
    private FragmentListBikerBinding binding;
    private ListBikerAdapterRecyclerView adapterRecyclerView;
    private List<BikerItemModel> bikerList;
+   private boolean isFilter ;
+
+    public ListBikerFragment(boolean isFilter) {
+        this.isFilter = isFilter;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -46,6 +51,8 @@ public class ListBikerFragment extends BaseFragment {
         bikerList.add(new BikerItemModel("Biker 3","","200"));
 
         adapterRecyclerView = new ListBikerAdapterRecyclerView(bikerList);
+
+        binding.horizontalScrollView.setVisibility(isFilter ? View.VISIBLE : View.GONE);
 
         binding.recyclerview.setLayoutManager(new GridLayoutManager(requireActivity(),1));
         binding.recyclerview.setAdapter(adapterRecyclerView);

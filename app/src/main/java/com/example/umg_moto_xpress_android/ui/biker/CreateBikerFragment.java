@@ -58,6 +58,8 @@ public class CreateBikerFragment extends BaseFragment {
         binding = FragmentCreateBikerBinding.inflate(inflater,container,false);
         listImagesAdd = new ArrayList<>();
         listCarouselItem = new ArrayList<>();
+        functionFocusFragment(binding.getRoot());
+        logoutLogin(binding.getRoot());
 
         createInstanceManager(savedInstanceState != null);
         visibleImage();
