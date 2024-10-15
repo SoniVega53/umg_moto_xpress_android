@@ -55,11 +55,17 @@ public class SpinnerPopupWindow extends ConstraintLayout {
     public void initialize(Context context,AttributeSet attrs){
         binding = SpinnerCardCustomBinding.inflate(LayoutInflater.from(context), this, true);
         TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.CustomAttributesSpinner);
-        attributesSpinner = new AttributesSpinner();
-        attributesSpinner.setTitle(a.getString(R.styleable.CustomAttributesSpinner_textTitleHide));
+        try {
+            attributesSpinner = new AttributesSpinner();
+            attributesSpinner.setTitle(a.getString(R.styleable.CustomAttributesSpinner_textTitleHide));
 
-        binding.txtTitle.setText(attributesSpinner.getTitle());
-        printSpinnerSelect();
+            binding.txtTitle.setText(attributesSpinner.getTitle());
+            printSpinnerSelect();
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            a.recycle();
+        }
     }
 
     /**

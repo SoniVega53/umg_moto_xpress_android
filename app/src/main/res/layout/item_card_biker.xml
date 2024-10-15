@@ -85,7 +85,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/textView2"
+                        android:id="@+id/txtDes"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
@@ -125,7 +125,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:fontFamily="@font/adlam_display"
-                        android:text="PRECIO * DIA:"
+                        android:text="PRECIO:"
                         android:textSize="16sp" />
 
                     <TextView

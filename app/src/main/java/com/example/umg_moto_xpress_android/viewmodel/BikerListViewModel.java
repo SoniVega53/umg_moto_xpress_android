@@ -5,6 +5,7 @@ import android.content.Context;
 import androidx.lifecycle.ViewModel;
 
 import com.example.umg_moto_xpress_android.R;
+import com.example.umg_moto_xpress_android.models.data.BikerItemModel;
 import com.example.umg_moto_xpress_android.models.data.CarouselHomeData;
 import com.example.umg_moto_xpress_android.tools.DriveUrlConverter;
 
@@ -12,6 +13,7 @@ import org.imaginativeworld.whynotimagecarousel.model.CarouselItem;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class BikerListViewModel extends ViewModel {
 
@@ -98,5 +100,34 @@ public class BikerListViewModel extends ViewModel {
         ));
 
         return carouselItems;
+    }
+
+    public List<BikerItemModel> listBikerAll(){
+        List<BikerItemModel> bikerList = new ArrayList<>();
+        bikerList.add(new BikerItemModel("Biker 1","","200",0));
+        bikerList.add(new BikerItemModel("Biker 2","","200",0));
+        bikerList.add(new BikerItemModel("Biker 3","","200",0));
+        bikerList.add(new BikerItemModel("Biker 3","","200",0));
+        bikerList.add(new BikerItemModel("Biker 3","","200",0));
+        bikerList.add(new BikerItemModel("Biker 3","","200",0));
+        bikerList.add(new BikerItemModel("Biker 3","","200",0));
+        bikerList.add(new BikerItemModel("Biker 3","","200",0));
+
+        bikerList.add(new BikerItemModel("Biker 3","","200",1));
+        bikerList.add(new BikerItemModel("Biker 3","","200",1));
+        bikerList.add(new BikerItemModel("Biker 3","","200",1));
+
+        bikerList.add(new BikerItemModel("Biker 3","","200",2));
+        bikerList.add(new BikerItemModel("Biker 3","","200",2));
+
+        return bikerList;
+    }
+
+    public List<BikerItemModel> getListBikerByType(List<BikerItemModel> list, int type){
+        try {
+            return list.stream().filter(bikerItemModel -> bikerItemModel.getType() == type).collect(Collectors.toList());
+        }catch (Exception e){
+            return new ArrayList<>();
+        }
     }
 }

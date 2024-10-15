@@ -15,6 +15,8 @@
     <string name="title_error">!Lo sentimos!</string>
     <string name="logout">Cerrar Sesión</string>
     <string name="logout_message">Está Seguro de querer cerrar sesión</string>
+    <string name="title_isEmpty">No se encontro Data</string>
+    <string name="des_isEmpty">No se encontro, valores pora pintar ya que aun no existen</string>
 
 
     <string name="all_biker">Todos</string>
@@ -24,6 +26,14 @@
     <string name="ca_biker">Capacidad</string>
     <string name="di_biker">Disponibilidad</string>
     <string name="ki_biker">Kilometraje</string>
+
+    <string name="dis_biker">Disponibles</string>
+    <string name="no_dis_biker">No Disponibles</string>
+    <string name="pros_biker">En Proceso</string>
+    <string name="cancel_biker">Cancelados</string>
+    <string name="fin_biker">Finalizados</string>
+
+
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>

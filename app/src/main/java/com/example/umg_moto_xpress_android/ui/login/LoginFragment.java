@@ -64,7 +64,7 @@ public class LoginFragment extends BaseFragment {
 
     private void setListenerTextWatcher (TextInputEditText input){
         setListenerTextWatcher(input,(charSequence, i, i1, i2) -> {
-            enableButton();
+           // enableButton();
         });
     }
 

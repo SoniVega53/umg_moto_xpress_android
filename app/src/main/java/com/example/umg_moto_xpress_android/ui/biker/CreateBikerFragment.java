@@ -117,6 +117,7 @@ public class CreateBikerFragment extends BaseFragment {
         }else {
             Bitmap bitmap = LocalStorageBase64.getInstance().displayBase64Image(listImagesAdd.get(0));
             binding.includeImage.imgFont.setImageBitmap(bitmap);
+            binding.includeImage.btnDelete.setVisibility(View.VISIBLE);
         }
     }
 

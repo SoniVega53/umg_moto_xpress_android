@@ -32,4 +32,33 @@
         <attr name="colorTextTitle" format="integer"/>
         <attr name="colorTextItemOption" format="integer"/>
     </declare-styleable>
+
+    <declare-styleable name="CustomAttributesItemBiker">
+        <attr name="textTitle" format="string"/>
+        <attr name="titleMessageEmpty" format="string"/>
+        <attr name="descriptionMessageEmpty" format="string"/>
+        <attr name="imageMessageEmpty" format="integer"/>
+    </declare-styleable>
+
+    <declare-styleable name="CustomAttributesInputs">
+        <attr name="textTitleInput" format="string"/>
+        <attr name="textHidTitleInput" format="string"/>
+        <attr name="inputType">
+            <flag name="none" value="0x00000000" />
+            <flag name="text" value="0x00000001"/>
+            <flag name="textCapCharacters" value="0x00001001"/>
+            <flag name="textCapWords" value="0x00002001"/>
+            <flag name="textMultiLine" value="0x00020001"/>
+            <flag name="textPassword" value="0x00000081"/>
+            <flag name="number" value="0x00000002"/>
+            <flag name="numberSigned" value="0x00001002"/>
+            <flag name="numberDecimal" value="0x00002002"/>
+            <flag name="phone" value="0x00000003"/>
+            <flag name="datetime" value="0x00000004"/>
+            <flag name="date" value="0x00000014"/>
+            <flag name="time" value="0x00000024"/>
+            <flag name="textAutoComplete" value="0x00010001"/>
+        </attr>
+
+    </declare-styleable>
 </resources>
