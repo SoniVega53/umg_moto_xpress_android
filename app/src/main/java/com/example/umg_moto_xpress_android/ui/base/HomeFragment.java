@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.view.ViewGroup;
 
 import com.example.umg_moto_xpress_android.R;
 import com.example.umg_moto_xpress_android.databinding.FragmentHomeBinding;
+import com.example.umg_moto_xpress_android.dialog.OptionMenuDialog;
 import com.example.umg_moto_xpress_android.models.data.CarouselHomeData;
 import com.example.umg_moto_xpress_android.ui.biker.ListBikerFragment;
 import com.example.umg_moto_xpress_android.ui.carousel.CarouselFragment;
@@ -58,8 +60,7 @@ public class HomeFragment extends BaseFragment {
                 clearOnBackPressedCall();
                 navigation(binding.getRoot(),R.id.action_homeFragment_to_reservationBikerFragment);
             }else if (item.getItemId() == R.id.process){
-                clearOnBackPressedCall();
-                navigation(binding.getRoot(),R.id.action_homeFragment_to_createBikerFragment);
+                showDialogMenu(binding.getRoot());
             }
             return false;
         });
@@ -67,4 +68,36 @@ public class HomeFragment extends BaseFragment {
         return binding.getRoot();
     }
 
+
+    private void showDialogMenu(View view) {
+        OptionMenuDialog dialog = new OptionMenuDialog(num -> {
+            switch (num){
+                case 1:
+                    clearOnBackPressedCall();
+                    navigation(binding.getRoot(),R.id.action_homeFragment_to_profileUserFragment);
+                    break;
+                case 2:
+                    clearOnBackPressedCall();
+                    navigation(binding.getRoot(),R.id.action_homeFragment_to_reservationBikerFragment);
+                    break;
+                case 3:
+                    clearOnBackPressedCall();
+                    navigation(binding.getRoot(),R.id.action_homeFragment_to_inventarioBikerFragment);
+                    break;
+                case 4:
+                    clearOnBackPressedCall();
+                    navigation(binding.getRoot(),R.id.action_homeFragment_to_createBikerFragment);
+                    break;
+                case 5:
+                    clearOnBackPressedCall();
+                    navigation(binding.getRoot(),R.id.action_homeFragment_to_usersListFragment);
+                    break;
+                case 6:
+                    clearOnBackPressedCall();
+                    navigation(binding.getRoot(),R.id.action_homeFragment_to_informeBikerFragment);
+                    break;
+            }
+        });
+        dialog.show(getChildFragmentManager(), OptionMenuDialog.TAG);
+    }
 }

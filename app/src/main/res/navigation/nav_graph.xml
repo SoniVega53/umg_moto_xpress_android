@@ -15,6 +15,18 @@
         <action
             android:id="@+id/action_homeFragment_to_createBikerFragment"
             app:destination="@id/createBikerFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_profileUserFragment"
+            app:destination="@id/profileUserFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_informeBikerFragment"
+            app:destination="@id/informeBikerFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_usersListFragment"
+            app:destination="@id/usersListFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_inventarioBikerFragment"
+            app:destination="@id/inventarioBikerFragment" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -43,5 +55,25 @@
         android:name="com.example.umg_moto_xpress_android.ui.biker.CreateBikerFragment"
         android:label="fragment_create_biker"
         tools:layout="@layout/fragment_create_biker" />
+    <fragment
+        android:id="@+id/informeBikerFragment"
+        android:name="com.example.umg_moto_xpress_android.ui.bitacora.InformeBikerFragment"
+        android:label="fragment_informe_biker"
+        tools:layout="@layout/fragment_informe_biker" />
+    <fragment
+        android:id="@+id/profileUserFragment"
+        android:name="com.example.umg_moto_xpress_android.ui.profile.ProfileUserFragment"
+        android:label="fragment_profile_user"
+        tools:layout="@layout/fragment_profile_user" />
+    <fragment
+        android:id="@+id/usersListFragment"
+        android:name="com.example.umg_moto_xpress_android.ui.profile.UsersListFragment"
+        android:label="fragment_users_list"
+        tools:layout="@layout/fragment_users_list" />
+    <fragment
+        android:id="@+id/inventarioBikerFragment"
+        android:name="com.example.umg_moto_xpress_android.ui.biker.InventarioBikerFragment"
+        android:label="fragment_inventary_biker"
+        tools:layout="@layout/fragment_inventary_biker" />
 
 </navigation>

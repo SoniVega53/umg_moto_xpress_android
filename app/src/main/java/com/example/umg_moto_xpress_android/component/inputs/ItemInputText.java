@@ -7,6 +7,7 @@ import android.text.InputType;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -51,17 +52,29 @@ public class ItemInputText extends ConstraintLayout {
         TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.CustomAttributesInputs);
 
         try {
-            binding.txtTitle.setHint(a.getString(R.styleable.CustomAttributesInputs_textHidTitleInput));
-            binding.txtEdit.setText(a.getString(R.styleable.CustomAttributesInputs_textTitleInput));
-            int inputType = a.getInt(R.styleable.CustomAttributesInputs_inputType, InputType.TYPE_CLASS_TEXT);
-            binding.txtEdit.setInputType(inputType);
+            boolean isImage = a.getBoolean(R.styleable.CustomAttributesInputs_isImageView,false);
 
+            binding.imageView.setVisibility(isImage ? VISIBLE:GONE);
+
+            binding.editTextText.setHint(a.getString(R.styleable.CustomAttributesInputs_textHidTitleInput));
+            binding.editTextText.setText(a.getString(R.styleable.CustomAttributesInputs_textTitleInput));
+            binding.imageView.setImageDrawable(getResources().getDrawable(a.getResourceId(R.styleable.CustomAttributesInputs_drawImage,R.drawable.magnifying_glass_solid)));
+            int inputType = a.getInt(R.styleable.CustomAttributesInputs_inputType, InputType.TYPE_CLASS_TEXT);
+
+            binding.editTextText.setInputType(inputType);
         }catch (Exception e){
             e.printStackTrace();
         }finally {
             a.recycle();
         }
+
+        binding.card.setOnClickListener(view -> {
+            binding.editTextText.isFocusable();
+        });
     }
 
+    public EditText getEditText(){
+        return binding.editTextText;
+    }
 
 }
