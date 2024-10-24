@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import com.example.umg_moto_xpress_android.R;
 import com.example.umg_moto_xpress_android.databinding.FragmentHomeBinding;
 import com.example.umg_moto_xpress_android.dialog.OptionMenuDialog;
+import com.example.umg_moto_xpress_android.dialog.bottomSheet.BottomDialogPayment;
 import com.example.umg_moto_xpress_android.models.data.CarouselHomeData;
 import com.example.umg_moto_xpress_android.ui.biker.ListBikerFragment;
 import com.example.umg_moto_xpress_android.ui.carousel.CarouselFragment;
@@ -59,6 +60,9 @@ public class HomeFragment extends BaseFragment {
             if (item.getItemId() == R.id.reservation){
                 clearOnBackPressedCall();
                 navigation(binding.getRoot(),R.id.action_homeFragment_to_reservationBikerFragment);
+        /*        BottomDialogPayment bottomSheetFragment = new BottomDialogPayment();
+                bottomSheetFragment.show(requireActivity().getSupportFragmentManager(), "card_bottom");*/
+
             }else if (item.getItemId() == R.id.process){
                 showDialogMenu(binding.getRoot());
             }

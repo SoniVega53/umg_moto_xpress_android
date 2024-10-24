@@ -73,9 +73,7 @@ public class CreateBikerFragment extends BaseFragment {
             visibleImage();
         });
 
-        binding.button2.setOnClickListener(view -> {
-            //Toast.makeText(requireActivity(),String.valueOf(listImagesAdd.get(0)), Toast.LENGTH_SHORT).show();
-        });
+
 
         return binding.getRoot();
     }

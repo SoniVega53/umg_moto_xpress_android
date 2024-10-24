@@ -180,6 +180,4 @@ public class BaseFragment extends Fragment {
                     .commit();
         }
     }
-
-
 }

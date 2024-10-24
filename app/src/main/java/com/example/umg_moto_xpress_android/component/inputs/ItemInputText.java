@@ -3,10 +3,12 @@ package com.example.umg_moto_xpress_android.component.inputs;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.text.InputFilter;
 import android.text.InputType;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
 import androidx.annotation.NonNull;
@@ -57,6 +59,14 @@ public class ItemInputText extends ConstraintLayout {
             binding.imageView.setVisibility(isImage ? VISIBLE:GONE);
 
             binding.editTextText.setHint(a.getString(R.styleable.CustomAttributesInputs_textHidTitleInput));
+            int maxLen = a.getInteger(R.styleable.CustomAttributesInputs_maxLengthInput,0);
+
+            if (maxLen > 0){
+                InputFilter maxLengthFilter = new InputFilter.LengthFilter(maxLen);
+                binding.editTextText.setFilters(new InputFilter[]{maxLengthFilter});
+            }
+
+
             binding.editTextText.setText(a.getString(R.styleable.CustomAttributesInputs_textTitleInput));
             binding.imageView.setImageDrawable(getResources().getDrawable(a.getResourceId(R.styleable.CustomAttributesInputs_drawImage,R.drawable.magnifying_glass_solid)));
             int inputType = a.getInt(R.styleable.CustomAttributesInputs_inputType, InputType.TYPE_CLASS_TEXT);
@@ -69,7 +79,9 @@ public class ItemInputText extends ConstraintLayout {
         }
 
         binding.card.setOnClickListener(view -> {
-            binding.editTextText.isFocusable();
+            binding.editTextText.requestFocus();
+            InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.showSoftInput(binding.editTextText, InputMethodManager.SHOW_IMPLICIT);
         });
     }
 

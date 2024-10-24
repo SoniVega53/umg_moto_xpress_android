@@ -40,9 +40,16 @@
         <attr name="imageMessageEmpty" format="integer"/>
     </declare-styleable>
 
+    <declare-styleable name="CustomAttributesDetails">
+        <attr name="textDesProfile" format="string"/>
+        <attr name="titleProfile" format="string"/>
+        <attr name="drawImageProfile" format="reference|color"/>
+    </declare-styleable>
+
     <declare-styleable name="CustomAttributesInputs">
         <attr name="textTitleInput" format="string"/>
         <attr name="textHidTitleInput" format="string"/>
+        <attr name="maxLengthInput" format="integer"/>
         <attr name="drawImage" format="reference|color"/>
         <attr name="isImageView" format="boolean"/>
         <attr name="inputType">

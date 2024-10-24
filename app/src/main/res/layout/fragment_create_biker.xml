@@ -4,134 +4,140 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="8dp"
     tools:context=".ui.biker.CreateBikerFragment">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            <FrameLayout
-                android:id="@+id/fragmentImages"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                android:layout_height="match_parent">
+
+                <Button
+                    android:id="@+id/button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Button"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
 
                 <FrameLayout
-                    android:id="@+id/frameCarousel"
+                    android:id="@+id/fragmentImages"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <FrameLayout
+                        android:id="@+id/frameCarousel"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                    </FrameLayout>
+
+                    <ImageView
+                        android:id="@+id/imgEmpty"
+                        android:layout_width="match_parent"
+                        android:layout_height="190dp"
+                        android:src="@drawable/image_solid" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/conUncle"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:visibility="gone">
+
+                        <include
+                            android:id="@+id/includeImage"
+                            layout="@layout/item_carousel"
+                            android:layout_width="250dp"
+                            android:layout_height="match_parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
                 </FrameLayout>
 
-                <ImageView
-                    android:id="@+id/imgEmpty"
-                    android:layout_width="match_parent"
-                    android:layout_height="190dp"
-                    android:src="@drawable/image_solid" />
+                <Button
+                    android:id="@+id/btnAddImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Add Imagen"
+                    app:icon="@drawable/plus_solid"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/fragmentImages" />
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/conUncle"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:visibility="gone">
-
-                    <include
-                        android:id="@+id/includeImage"
-                        layout="@layout/item_carousel"
-                        android:layout_width="250dp"
-                        android:layout_height="match_parent"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-            </FrameLayout>
-
-            <Button
-                android:id="@+id/btnAddImage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Add Imagen"
-                app:icon="@drawable/plus_solid_24"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/fragmentImages" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="8dp"
-                android:orientation="vertical"
-                app:layout_constraintBottom_toTopOf="@+id/button2"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btnAddImage"
-                app:layout_constraintVertical_bias="0.0">
-
-
-                <com.example.umg_moto_xpress_android.component.inputs.ItemInputText
+                <LinearLayout
+                    android:id="@+id/linearLayout2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:textHidTitleInput="Nombre"
-                    app:inputType="text|textAutoComplete"
-                    />
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toTopOf="@+id/button"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/btnAddImage"
+                    app:layout_constraintVertical_bias="0.0">
 
-                <com.example.umg_moto_xpress_android.component.inputs.ItemInputText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    app:textHidTitleInput="Nombre"
-                    app:inputType="text|textAutoComplete"/>
 
-                <com.example.umg_moto_xpress_android.component.inputs.ItemInputText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    app:textHidTitleInput="Nombre"
-                    app:inputType="text|textAutoComplete"/>
+                    <com.example.umg_moto_xpress_android.component.inputs.ItemInputText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:inputType="text|textAutoComplete"
+                        app:textHidTitleInput="Nombre" />
 
-                <com.example.umg_moto_xpress_android.component.inputs.ItemInputText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    app:textHidTitleInput="Nombre"
-                    app:inputType="text|textAutoComplete"/>
+                    <com.example.umg_moto_xpress_android.component.inputs.ItemInputText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        app:inputType="text|textAutoComplete"
+                        app:textHidTitleInput="Nombre" />
 
-                <com.example.umg_moto_xpress_android.component.inputs.ItemInputText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    app:textHidTitleInput="Nombre"
-                    app:inputType="text|textAutoComplete"/>
-            </LinearLayout>
+                    <com.example.umg_moto_xpress_android.component.inputs.ItemInputText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        app:inputType="text|textAutoComplete"
+                        app:textHidTitleInput="Nombre" />
 
-            <Button
-                android:id="@+id/button2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/accept"
-                android:visibility="visible"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                    <com.example.umg_moto_xpress_android.component.inputs.ItemInputText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        app:inputType="text|textAutoComplete"
+                        app:textHidTitleInput="Nombre" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                    <com.example.umg_moto_xpress_android.component.inputs.ItemInputText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        app:inputType="text|textAutoComplete"
+                        app:textHidTitleInput="Nombre" />
+
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
