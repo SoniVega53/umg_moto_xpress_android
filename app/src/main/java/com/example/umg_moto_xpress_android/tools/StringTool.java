@@ -7,5 +7,4 @@ public class StringTool {
 
     public static final String LOGIN_SESSION = "login_session";
     public static final String LOGIN_USER = "login_user";
-    public static final String LOGIN_ROL = "login_rol";
 }

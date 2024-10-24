@@ -10,12 +10,16 @@ import androidx.navigation.Navigation;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.umg_moto_xpress_android.R;
 import com.example.umg_moto_xpress_android.databinding.FragmentHomeBinding;
 import com.example.umg_moto_xpress_android.dialog.OptionMenuDialog;
 import com.example.umg_moto_xpress_android.dialog.bottomSheet.BottomDialogPayment;
 import com.example.umg_moto_xpress_android.models.data.CarouselHomeData;
+import com.example.umg_moto_xpress_android.models.data.UserDecodeData;
+import com.example.umg_moto_xpress_android.tools.SharedPreferencesTool;
+import com.example.umg_moto_xpress_android.tools.StringTool;
 import com.example.umg_moto_xpress_android.ui.biker.ListBikerFragment;
 import com.example.umg_moto_xpress_android.ui.carousel.CarouselFragment;
 import com.example.umg_moto_xpress_android.viewmodel.BikerListViewModel;
@@ -35,6 +39,7 @@ public class HomeFragment extends BaseFragment {
         super.onCreate(savedInstanceState);
         hiddenShowNavBar(false);
         bikerListViewModel = new ViewModelProvider(requireActivity()).get(BikerListViewModel.class);
+        Toast.makeText(requireActivity(), "Bienvenido " + getUserDecodeData().getName().toUpperCase(), Toast.LENGTH_LONG).show();
 
     }
 

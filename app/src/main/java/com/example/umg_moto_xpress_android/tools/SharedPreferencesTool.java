@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+import com.example.umg_moto_xpress_android.models.data.UserDecodeData;
+import com.google.gson.Gson;
 import com.securepreferences.SecurePreferences;
 
 public class SharedPreferencesTool {
@@ -47,5 +49,16 @@ public class SharedPreferencesTool {
     public static void cleanKey(Context context, String key) {
         sp = getSecureInstance(context);
         sp.edit().remove(key).apply();
+    }
+
+
+    public static void writeSecureUser(Context context, String key, UserDecodeData value) {
+        sp = getSecureInstance(context);
+        sp.edit().putString(key, new Gson().toJson(value)).apply();
+    }
+
+    public static UserDecodeData readSecureUser(Context context, String key, String defaultValue) {
+        sp = getSecureInstance(context);
+        return new Gson().fromJson(sp.getString(key, defaultValue),UserDecodeData.class);
     }
 }

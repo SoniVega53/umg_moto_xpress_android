@@ -1,5 +1,8 @@
 package com.example.umg_moto_xpress_android.ui.login;
 
+
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,11 +17,15 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.umg_moto_xpress_android.R;
 import com.example.umg_moto_xpress_android.databinding.FragmentLoginBinding;
 import com.example.umg_moto_xpress_android.models.request.LoginSingRequest;
+import com.example.umg_moto_xpress_android.repositories.MainRepositories;
+import com.example.umg_moto_xpress_android.tools.JwtDecoder;
 import com.example.umg_moto_xpress_android.tools.SharedPreferencesTool;
 import com.example.umg_moto_xpress_android.tools.StringTool;
 import com.example.umg_moto_xpress_android.ui.base.BaseFragment;
@@ -26,6 +33,8 @@ import com.example.umg_moto_xpress_android.ui.base.HomeFragment;
 import com.example.umg_moto_xpress_android.viewmodel.LoginViewModel;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+
+import org.json.JSONObject;
 
 
 public class LoginFragment extends BaseFragment {
@@ -47,8 +56,8 @@ public class LoginFragment extends BaseFragment {
         functionFocusFragment(binding.getRoot());
 
         binding.btnAccept.setOnClickListener(view -> {
-            //getServiceLogin();
-            navigation(binding.getRoot(),R.id.action_loginFragment_to_homeFragment);
+            getServiceLogin();
+           // navigation(binding.getRoot(),R.id.action_loginFragment_to_homeFragment);
             clearInputs();
         });
 
@@ -59,12 +68,16 @@ public class LoginFragment extends BaseFragment {
             navigation(binding.getRoot(),R.id.action_loginFragment_to_registerFragment);
         });
 
+        binding.ipConfig.setOnClickListener(view -> {
+            showInputDialog();
+        });
+
         return binding.getRoot();
     }
 
     private void setListenerTextWatcher (TextInputEditText input){
         setListenerTextWatcher(input,(charSequence, i, i1, i2) -> {
-           // enableButton();
+            enableButton();
         });
     }
 
@@ -87,6 +100,8 @@ public class LoginFragment extends BaseFragment {
                 switch (loginResponse.getStatus()){
                     case StringTool.SUCCESS:
                         SharedPreferencesTool.writeSecureString(requireActivity(),StringTool.LOGIN_SESSION,loginResponse.getResponse().getEntityResponse().getToken());
+                        SharedPreferencesTool.writeSecureUser(requireActivity(),StringTool.LOGIN_USER,
+                                JwtDecoder.getNameDecode(loginResponse.getResponse().getEntityResponse().getToken()));
                         navigation(binding.getRoot(),R.id.action_loginFragment_to_homeFragment);
                         clearInputs();
                         break;
@@ -110,4 +125,32 @@ public class LoginFragment extends BaseFragment {
         binding.txtEditUser.getText().clear();
         binding.txtEditPass.getText().clear();
     }
+
+
+    private void showInputDialog() {
+        EditText input = new EditText(requireActivity());
+        input.setLayoutParams(new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.MATCH_PARENT
+        ));
+
+        LinearLayout layout = new LinearLayout(requireActivity());
+        layout.setPadding(50, 50, 50, 50);
+        layout.addView(input);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
+        builder.setTitle("Ingresa un valor");
+
+        builder.setView(layout);
+
+        builder.setPositiveButton("OK", (dialog, which) -> {
+            String inputValue = input.getText().toString();
+            MainRepositories.URL_API_IP = "http://".concat(inputValue).concat(":9090/api/proyecto/");
+        });
+
+        builder.setNegativeButton("Cancelar", (dialog, which) -> dialog.cancel());
+
+        builder.show();
+    }
+
 }

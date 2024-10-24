@@ -15,6 +15,7 @@ import androidx.navigation.Navigation;
 
 import com.example.umg_moto_xpress_android.R;
 import com.example.umg_moto_xpress_android.dialog.message.DetailsMessageInf;
+import com.example.umg_moto_xpress_android.models.data.UserDecodeData;
 import com.example.umg_moto_xpress_android.tools.SharedPreferencesTool;
 import com.example.umg_moto_xpress_android.tools.StringTool;
 import com.google.android.material.textfield.TextInputEditText;
@@ -55,6 +56,10 @@ public class BaseFragment extends Fragment {
         }catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    protected UserDecodeData getUserDecodeData(){
+        return SharedPreferencesTool.readSecureUser(requireActivity(), StringTool.LOGIN_USER,"");
     }
 
     protected void navigation(View view, int id){

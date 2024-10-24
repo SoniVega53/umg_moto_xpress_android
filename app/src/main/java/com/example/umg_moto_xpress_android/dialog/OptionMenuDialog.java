@@ -39,6 +39,15 @@ public class OptionMenuDialog extends BaseDialog {
 
         getDataStart();
 
+        if (getUserDecodeData().getRole().toLowerCase().equals("cliente")){
+            binding.containerData.setVisibility(View.GONE);
+        }else if (getUserDecodeData().getRole().toLowerCase().equals("gestor")){
+            binding.itemMenu5.setVisibility(View.GONE);
+        }else {
+            binding.containerData.setVisibility(View.VISIBLE);
+            binding.itemMenu5.setVisibility(View.VISIBLE);
+        }
+
         return binding.getRoot();
     }
 
