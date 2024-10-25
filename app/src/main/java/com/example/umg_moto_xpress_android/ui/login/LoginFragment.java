@@ -1,5 +1,8 @@
 package com.example.umg_moto_xpress_android.ui.login;
 
+
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -8,35 +11,43 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.GridLayoutManager;
 
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.umg_moto_xpress_android.R;
+import com.example.umg_moto_xpress_android.adapters.users.UserListAdapter;
 import com.example.umg_moto_xpress_android.databinding.FragmentLoginBinding;
 import com.example.umg_moto_xpress_android.models.request.LoginSingRequest;
+import com.example.umg_moto_xpress_android.repositories.MainRepositories;
+import com.example.umg_moto_xpress_android.tools.JwtDecoder;
 import com.example.umg_moto_xpress_android.tools.SharedPreferencesTool;
 import com.example.umg_moto_xpress_android.tools.StringTool;
 import com.example.umg_moto_xpress_android.ui.base.BaseFragment;
 import com.example.umg_moto_xpress_android.ui.base.HomeFragment;
 import com.example.umg_moto_xpress_android.viewmodel.LoginViewModel;
+import com.example.umg_moto_xpress_android.viewmodel.UserViewModel;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+
+import org.json.JSONObject;
 
 
 public class LoginFragment extends BaseFragment {
 
     private FragmentLoginBinding binding;
-    private LoginViewModel loginViewModel;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        loginViewModel = new ViewModelProvider(requireActivity()).get(LoginViewModel.class);
+        initViewModel();
     }
 
     @Override
@@ -48,13 +59,20 @@ public class LoginFragment extends BaseFragment {
 
         binding.btnAccept.setOnClickListener(view -> {
             getServiceLogin();
+            clearInputs();
         });
 
         setListenerTextWatcher(binding.txtEditUser);
         setListenerTextWatcher(binding.txtEditPass);
 
         binding.txtRegister.setOnClickListener(view -> {
-            Navigation.findNavController(binding.getRoot()).navigate(R.id.action_loginFragment_to_registerFragment);
+            navigation(binding.getRoot(),R.id.action_loginFragment_to_registerFragment);
+        });
+
+        binding.ipConfig.setOnClickListener(view -> {
+           // showInputDialog();
+            binding.txtEditUser.setText("admin");
+            binding.txtEditPass.setText("admin");
         });
 
         return binding.getRoot();
@@ -85,7 +103,33 @@ public class LoginFragment extends BaseFragment {
                 switch (loginResponse.getStatus()){
                     case StringTool.SUCCESS:
                         SharedPreferencesTool.writeSecureString(requireActivity(),StringTool.LOGIN_SESSION,loginResponse.getResponse().getEntityResponse().getToken());
-                        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_loginFragment_to_homeFragment);
+                        SharedPreferencesTool.writeSecureUser(requireActivity(),StringTool.LOGIN_USER,
+                                JwtDecoder.getNameDecode(loginResponse.getResponse().getEntityResponse().getToken()));
+                        getServiceDetailUser();
+                        break;
+                    case StringTool.ERROR:
+                        if (loginResponse.getResponse() != null){
+                            dialogMessage(getString(R.string.title_error),loginResponse.getResponse().getMessage(),1);
+                        }else {
+                            dialogMessage(getString(R.string.title_error),getString(R.string.message_error),2);
+                        }
+                        loadingShow(false);
+                        break;
+                }
+
+            }catch (Exception e){
+                dialogMessage(getString(R.string.title_error),getString(R.string.message_error),2);
+                loadingShow(false);
+            }
+        });
+    }
+
+    private void getServiceDetailUser(){
+        userViewModel.getUserDetailResponse(requireActivity()).observe(requireActivity(), loginResponse -> {
+            try {
+                switch (loginResponse.getStatus()){
+                    case StringTool.SUCCESS:
+                        navigation(binding.getRoot(),R.id.action_loginFragment_to_homeFragment);
                         clearInputs();
                         break;
                     case StringTool.ERROR:
@@ -108,4 +152,32 @@ public class LoginFragment extends BaseFragment {
         binding.txtEditUser.getText().clear();
         binding.txtEditPass.getText().clear();
     }
+
+
+    private void showInputDialog() {
+        EditText input = new EditText(requireActivity());
+        input.setLayoutParams(new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.MATCH_PARENT
+        ));
+
+        LinearLayout layout = new LinearLayout(requireActivity());
+        layout.setPadding(50, 50, 50, 50);
+        layout.addView(input);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
+        builder.setTitle("Ingresa un valor");
+
+        builder.setView(layout);
+
+        builder.setPositiveButton("OK", (dialog, which) -> {
+            String inputValue = input.getText().toString();
+            MainRepositories.URL_API_IP = "http://".concat(inputValue).concat(":9090/api/proyecto/");
+        });
+
+        builder.setNegativeButton("Cancelar", (dialog, which) -> dialog.cancel());
+
+        builder.show();
+    }
+
 }

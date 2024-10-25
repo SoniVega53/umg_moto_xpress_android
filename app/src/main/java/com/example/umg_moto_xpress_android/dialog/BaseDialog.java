@@ -4,7 +4,10 @@ import android.view.View;
 
 import androidx.fragment.app.DialogFragment;
 
+import com.example.umg_moto_xpress_android.models.data.UserDecodeData;
 import com.example.umg_moto_xpress_android.tools.FormatCurrency;
+import com.example.umg_moto_xpress_android.tools.SharedPreferencesTool;
+import com.example.umg_moto_xpress_android.tools.StringTool;
 
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
@@ -32,6 +35,10 @@ public class BaseDialog extends DialogFragment {
         DecimalFormat df = new DecimalFormat("#.##",symbols);
 
         return df.format(num);
+    }
+
+    protected UserDecodeData getUserDecodeData(){
+        return SharedPreferencesTool.readSecureUser(requireActivity(), StringTool.LOGIN_USER,"");
     }
 
     public interface OnCheckClick{

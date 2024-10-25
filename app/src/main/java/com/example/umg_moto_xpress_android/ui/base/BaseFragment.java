@@ -2,6 +2,9 @@ package com.example.umg_moto_xpress_android.ui.base;
 
 
 import android.content.Context;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -10,9 +13,17 @@ import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import com.example.umg_moto_xpress_android.R;
 import com.example.umg_moto_xpress_android.dialog.message.DetailsMessageInf;
+import com.example.umg_moto_xpress_android.models.data.UserDecodeData;
+import com.example.umg_moto_xpress_android.tools.SharedPreferencesTool;
+import com.example.umg_moto_xpress_android.tools.StringTool;
+import com.example.umg_moto_xpress_android.viewmodel.BikerListViewModel;
+import com.example.umg_moto_xpress_android.viewmodel.LoginViewModel;
+import com.example.umg_moto_xpress_android.viewmodel.UserViewModel;
 import com.google.android.material.textfield.TextInputEditText;
 
 public class BaseFragment extends Fragment {
@@ -20,6 +31,16 @@ public class BaseFragment extends Fragment {
     private OnBackPressedCallback callback;
     private boolean callbackEnabled = true;
     protected boolean focusFragment = false;
+
+    protected LoginViewModel loginViewModel;
+    protected UserViewModel userViewModel;
+    protected BikerListViewModel bikerListViewModel;
+
+    protected void initViewModel(){
+        loginViewModel = new ViewModelProvider(requireActivity()).get(LoginViewModel.class);
+        userViewModel = new ViewModelProvider(requireActivity()).get(UserViewModel.class);
+        bikerListViewModel = new ViewModelProvider(requireActivity()).get(BikerListViewModel.class);
+    }
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -53,8 +74,44 @@ public class BaseFragment extends Fragment {
         }
     }
 
+    protected UserDecodeData getUserDecodeData(){
+        return SharedPreferencesTool.readSecureUser(requireActivity(), StringTool.LOGIN_USER,"");
+    }
+
+    protected void navigation(View view, int id){
+        try {
+            Navigation.findNavController(view).navigate(id);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    protected void navigation(View view, int id, Bundle bundle){
+        try {
+            Navigation.findNavController(view).navigate(id,bundle);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    protected void navPopBackStack(View view, int id){
+        try {
+            Navigation.findNavController(view).popBackStack(id,false);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    protected void navPopBackStack(View view){
+        try {
+            Navigation.findNavController(view).popBackStack();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 
     protected void onBackPressedCall(OnBackPressedCall onBackPressedCall){
+        callbackEnabled = true;
         callback = new OnBackPressedCallback(callbackEnabled) {
             @Override
             public void handleOnBackPressed() {
@@ -66,8 +123,12 @@ public class BaseFragment extends Fragment {
     }
 
     protected void clearOnBackPressedCall(){
-        callback.remove();
-        callbackEnabled = false;
+        try {
+            callback.remove();
+            callbackEnabled = false;
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     protected void functionFocusFragment(View view){
@@ -128,5 +189,45 @@ public class BaseFragment extends Fragment {
 
     protected interface TextChangedListener{
         void onTextChanged(CharSequence charSequence, int i, int i1, int i2);
+    }
+
+    protected void logoutLogin(View viewFragment){
+        logout(view -> {
+            focusFragment = true;
+            dialogMessage(getString(R.string.logout),getString(R.string.logout_message),0,view1 -> {
+                clearOnBackPressedCall();
+                SharedPreferencesTool.writeSecureString(requireActivity(), StringTool.LOGIN_SESSION,"");
+                navPopBackStack(viewFragment,R.id.loginFragment);
+            });
+        });
+    }
+    protected void addChildFragmentManager(Fragment fragment, int idComponent){
+        Fragment fragExs = getChildFragmentManager().findFragmentById(idComponent);
+        if (fragment != null && fragExs == null) {
+            getChildFragmentManager().beginTransaction()
+                    .add(idComponent, fragment) // Usa el ID de tu FrameLayout
+                    .commit();
+        }
+    }
+
+    protected void addChildFragmentManagerDelete(Fragment fragment, int idComponent) {
+        Fragment fragExs = getChildFragmentManager().findFragmentById(idComponent);
+        if (fragExs != null) {
+            // Si el fragmento ya existe, elimínalo primero
+            getChildFragmentManager().beginTransaction()
+                    .remove(fragExs)
+                    .commit();
+        }
+
+        // Agrega el nuevo fragmento si es válido
+        if (fragment != null) {
+            getChildFragmentManager().beginTransaction()
+                    .add(idComponent, fragment) // Usa el ID de tu FrameLayout
+                    .commit();
+        }
+    }
+
+    protected void sleepService(Runnable runnable, int mili){
+        new Handler(Looper.getMainLooper()).postDelayed(runnable, mili);
     }
 }

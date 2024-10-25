@@ -14,7 +14,11 @@
     <string name="message_error">Surgió algo inesperado</string>
     <string name="title_error">!Lo sentimos!</string>
     <string name="logout">Cerrar Sesión</string>
+    <string name="delete">Elimnar</string>
     <string name="logout_message">Está Seguro de querer cerrar sesión</string>
+    <string name="delete_message">Está Seguro de querer Eliminar Usuario</string>
+    <string name="title_isEmpty">No se encontro Data</string>
+    <string name="des_isEmpty">No se encontro, valores pora pintar ya que aun no existen</string>
 
 
     <string name="all_biker">Todos</string>
@@ -24,6 +28,15 @@
     <string name="ca_biker">Capacidad</string>
     <string name="di_biker">Disponibilidad</string>
     <string name="ki_biker">Kilometraje</string>
+
+    <string name="dis_biker">Disponibles</string>
+    <string name="no_dis_biker">No Disponibles</string>
+    <string name="pros_biker">En Proceso</string>
+    <string name="cancel_biker">Cancelados</string>
+    <string name="man_biker">Mantenimiento</string>
+    <string name="fin_biker">Finalizados</string>
+
+
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
@@ -33,8 +46,35 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- Strings menu dialog -->
+    <string name="menu_profile">Perfil</string>
+    <string name="menu_reservation">Reservaciones</string>
+    <string name="menu_biker">Inv. Motos</string>
+    <string name="menu_add_biker">Crear Moto</string>
+    <string name="menu_users">Usuarios</string>
+    <string name="menu_bita">Reportes</string>
+
+    <!-- Strings profile -->
+    <string name="username">Nombre de usuario</string>
+    <string name="name">Nombre</string>
+    <string name="lastName">Apellido</string>
+    <string name="email">Correo Electrónico</string>
+    <string name="phone">Teléfono</string>
+    <string name="address">Dirección</string>
+
+    <string name="mark">Marca</string>
+    <string name="kilo">kilometraje</string>
+    <string name="capacity">capacidad</string>
+    <string name="cili">cilindraje</string>
+    <string name="zona_geo">Zona Geográfica</string>
+    <string name="dispo">Disponibilidad</string>
+
+    <string name="since">Desde</string>
+    <string name="to">Hasta</string>
+    <string name="description">Descripción</string>
+
+    <string name="add_biker_inv">Añadir Moto al inventario</string>
 
 
 </resources>
