@@ -104,7 +104,7 @@ public class RegisterFragment extends BaseFragment {
             try {
                 switch (loginResponse.getStatus()){
                     case StringTool.SUCCESS:
-                        navigation(binding.getRoot(),R.id.action_loginFragment_to_homeFragment);
+                        navigation(binding.getRoot(),R.id.action_registerFragment_to_homeFragment);
                         break;
                     case StringTool.ERROR:
                         if (loginResponse.getResponse() != null){
