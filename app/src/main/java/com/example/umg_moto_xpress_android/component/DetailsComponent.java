@@ -54,6 +54,10 @@ public class DetailsComponent extends ConstraintLayout {
         try {
             binding.txtTitle.setText(a.getString(R.styleable.CustomAttributesDetails_titleProfile));
             binding.txtDes.setText(a.getString(R.styleable.CustomAttributesDetails_textDesProfile));
+
+            boolean isImage = a.getBoolean(R.styleable.CustomAttributesDetails_isImageViewProfile,true);
+
+            binding.imgIcon.setVisibility(isImage ? VISIBLE:GONE);
             binding.imgIcon.setImageDrawable(getResources().getDrawable(a.getResourceId(R.styleable.CustomAttributesDetails_drawImageProfile, R.drawable.file_regular)));
         }catch (Exception e){
             e.printStackTrace();

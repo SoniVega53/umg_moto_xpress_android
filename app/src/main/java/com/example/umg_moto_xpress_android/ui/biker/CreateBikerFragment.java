@@ -24,6 +24,7 @@ import com.example.umg_moto_xpress_android.R;
 import com.example.umg_moto_xpress_android.databinding.FragmentCreateBikerBinding;
 import com.example.umg_moto_xpress_android.tools.DriveUrlConverter;
 import com.example.umg_moto_xpress_android.tools.LocalStorageBase64;
+import com.example.umg_moto_xpress_android.tools.SimpleTextWatcher;
 import com.example.umg_moto_xpress_android.ui.base.BaseFragment;
 import com.example.umg_moto_xpress_android.ui.carousel.CarouselFragment;
 import com.google.android.material.behavior.HideBottomViewOnScrollBehavior;
@@ -73,10 +74,39 @@ public class CreateBikerFragment extends BaseFragment {
             visibleImage();
         });
 
+        binding.btnContinue.setOnClickListener(view -> {
+            navigation(view,R.id.action_createBikerFragment_to_addBikerInventaryFragment);
+        });
 
+        binding.componentName.getEditText().addTextChangedListener(simpleTextWatcher());
+        binding.componentde.getEditText().addTextChangedListener(simpleTextWatcher());
+        binding.componentCili.getEditText().addTextChangedListener(simpleTextWatcher());
+        binding.componentCapaci.getEditText().addTextChangedListener(simpleTextWatcher());
+        binding.componentNameMo.getEditText().addTextChangedListener(simpleTextWatcher());
+        binding.componentYear.getEditText().addTextChangedListener(simpleTextWatcher());
+        binding.componentMar.getEditText().addTextChangedListener(simpleTextWatcher());
 
         return binding.getRoot();
     }
+
+    private SimpleTextWatcher simpleTextWatcher(){
+        return new SimpleTextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                super.onTextChanged(charSequence, i, i1, i2);
+                enableButton();
+            }
+        };
+    }
+
+    private void enableButton(){
+        binding.btnContinue.setEnabled(
+                binding.componentName.isEmptyText() && binding.componentde.isEmptyText() && binding.componentCili.isEmptyText()
+                        && binding.componentCapaci.isEmptyText() && binding.componentNameMo.isEmptyText() && binding.componentYear.isEmptyText()
+                        && binding.componentMar.isEmptyText()
+        );
+    }
+
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {

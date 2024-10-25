@@ -44,6 +44,7 @@
         <attr name="textDesProfile" format="string"/>
         <attr name="titleProfile" format="string"/>
         <attr name="drawImageProfile" format="reference|color"/>
+        <attr name="isImageViewProfile" format="boolean"/>
     </declare-styleable>
 
     <declare-styleable name="CustomAttributesInputs">
@@ -70,4 +71,8 @@
         </attr>
 
     </declare-styleable>
+
+    <style name="NewIconInput" parent="@style/Widget.MaterialComponents.TextInputLayout.FilledBox">
+
+    </style>
 </resources>

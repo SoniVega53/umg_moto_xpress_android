@@ -68,7 +68,6 @@ public class RegisterFragment extends BaseFragment {
 
 
     private void getServiceLogin(){
-        loadingShow(true);
         loginViewModel.setLoginResponseMutableLiveData(requireActivity(),new LoginSingRequest(
                 binding.txtEditUser.getText().toString().trim(),
                 binding.txtEditPass.getText().toString().trim()

@@ -162,4 +162,64 @@ public class UserRepository extends BaseRepository {
         return data;
     }
 
+    public MutableLiveData<StatusResponse<BaseResponse>> postUpdateUserRol(String idRole){
+        MutableLiveData<StatusResponse<BaseResponse>> data = new MutableLiveData<>();
+        StatusResponse<BaseResponse> statusResponse = new StatusResponse<>();
+
+        UserDecodeData user = getUserDecodeData(context);
+
+        statusResponse.setStatus(StringTool.LOADING);
+        userApi.getUpdateUserRol(user.getName(),idRole).enqueue(new Callback<BaseResponse>() {
+            @Override
+            public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
+                try {
+                    statusResponse.setStatus(!response.body().getCode().equals("400") ? StringTool.SUCCESS:StringTool.ERROR);
+                    statusResponse.setResponse(response.body());
+                    data.setValue(statusResponse);
+
+                }catch (Exception e){
+                    statusResponse.setStatus(StringTool.ERROR);
+                    data.setValue(new StatusResponse<>());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<BaseResponse> call, Throwable t) {
+                statusResponse.setStatus(StringTool.ERROR);
+                data.setValue(new StatusResponse<>());
+            }
+        });
+
+        return data;
+    }
+
+    public MutableLiveData<StatusResponse<BaseResponse>> deleteUser(String idUser){
+        MutableLiveData<StatusResponse<BaseResponse>> data = new MutableLiveData<>();
+        StatusResponse<BaseResponse> statusResponse = new StatusResponse<>();
+
+        statusResponse.setStatus(StringTool.LOADING);
+        userApi.deleteUser(idUser).enqueue(new Callback<BaseResponse>() {
+            @Override
+            public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
+                try {
+                    statusResponse.setStatus(!response.body().getCode().equals("400") ? StringTool.SUCCESS:StringTool.ERROR);
+                    statusResponse.setResponse(response.body());
+                    data.setValue(statusResponse);
+
+                }catch (Exception e){
+                    statusResponse.setStatus(StringTool.ERROR);
+                    data.setValue(new StatusResponse<>());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<BaseResponse> call, Throwable t) {
+                statusResponse.setStatus(StringTool.ERROR);
+                data.setValue(new StatusResponse<>());
+            }
+        });
+
+        return data;
+    }
+
 }

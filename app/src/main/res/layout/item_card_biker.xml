@@ -60,7 +60,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:scaleType="fitXY"
-                        app:srcCompat="@drawable/fondo" />
+                        app:srcCompat="@drawable/biker_icon_option2" />
 
                 </com.google.android.material.card.MaterialCardView>
 
@@ -86,19 +86,22 @@
 
                     <TextView
                         android:id="@+id/txtDes"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="8dp"
                         android:fontFamily="@font/ar_one_sans_medium"
+                        android:lines="2"
                         android:text="TextView"
                         android:textAlignment="viewStart"
                         android:textColor="@color/primaryDarkBlack"
                         android:textSize="12sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/txtTitle" />
+                        app:layout_constraintTop_toBottomOf="@+id/txtTitle"
+                        app:layout_constraintVertical_bias="0.0" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>
 
@@ -129,7 +132,7 @@
                         android:textSize="16sp" />
 
                     <TextView
-                        android:id="@+id/textView3"
+                        android:id="@+id/txtPrice"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"

@@ -23,6 +23,8 @@ public class UserViewModel extends ViewModel {
     private MutableLiveData<StatusResponse<UserDetailResponse>> userDetailResponse;
     private MutableLiveData<StatusResponse<BaseResponse>> changePassword;
     private MutableLiveData<StatusResponse<UserPersonaResponse>> putUserDetail;
+    private MutableLiveData<StatusResponse<BaseResponse>> updateUserRol;
+    private MutableLiveData<StatusResponse<BaseResponse>> deleteUser;
 
     public MutableLiveData<StatusResponse<UserListResponse>> getUserListResponse() {
         return userListResponse;
@@ -55,12 +57,38 @@ public class UserViewModel extends ViewModel {
         return putUserDetail;
     }
 
-    public List<UserDataModel> getListUsers(List<UserProfileData> userProfileDataList){
+    public MutableLiveData<StatusResponse<BaseResponse>> getUpdateUserRole(Context context, String rol) {
+        UserRepository repository = new UserRepository(context);
+        updateUserRol = repository.postUpdateUserRol(rol);
+        return updateUserRol;
+    }
+
+    public MutableLiveData<StatusResponse<BaseResponse>> getDeleteUser(Context context, String idUser) {
+        UserRepository repository = new UserRepository(context);
+        deleteUser = repository.deleteUser(idUser);
+        return deleteUser;
+    }
+
+    public List<UserDataModel> getListUsers(List<UserProfileData> userProfileDataList, String userLogin){
         List<UserDataModel> list = new ArrayList<>();
         for (UserProfileData item:userProfileDataList) {
-            list.add(new UserDataModel(item.getUsername(),item.getEmail(),item.getPerson().getName(),item.getPerson().getLastName()));
+            if (!userLogin.trim().toLowerCase().equals(item.getUsername()))
+                list.add(new UserDataModel(item.getUsername(),item.getEmail(),item.getPerson().getName(),item.getPerson().getLastName(),item.getIdUser()));
         }
         return list;
+    }
+
+    public List<UserDataModel> getListUsersFilter(List<UserDataModel> userProfileDataList, String search){
+        if (search != null && !search.isEmpty()){
+            List<UserDataModel> list = new ArrayList<>();
+            for (UserDataModel item:userProfileDataList) {
+                if (item.getUserName().toLowerCase().contains(search.toLowerCase().trim()))
+                    list.add(item);
+            }
+            return list;
+        }else{
+            return userProfileDataList;
+        }
     }
 
 }

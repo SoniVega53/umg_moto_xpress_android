@@ -10,144 +10,177 @@
         android:id="@+id/txtTiitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/ar_one_sans_medium"
         android:text="@string/subtitle_home"
         android:textSize="16sp"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <HorizontalScrollView
-        android:id="@+id/horizontalScrollView"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/subContent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:padding="4dp"
-        android:scrollbarSize="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtTiitle">
 
-        <RadioGroup
-            android:id="@+id/rdGroup"
+        <com.example.umg_moto_xpress_android.component.inputs.ItemInputText
+            android:id="@+id/comSearch"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="14dp"
+            android:layout_marginEnd="14dp"
+            app:drawImage="@drawable/magnifying_glass_solid"
+            app:isImageView="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:textHidTitleInput="Buscar" />
+
+        <HorizontalScrollView
+            android:id="@+id/horizontalScrollView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="8dp"
+            android:padding="4dp"
+            android:scrollbarSize="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/comSearch">
 
-            <RadioButton
-                android:id="@+id/rd1"
-                android:layout_width="match_parent"
+            <RadioGroup
+                android:id="@+id/rdGroup"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/backgroud_radio_button"
-                android:buttonTint="@color/primaryDarkBlack"
-                android:checked="true"
-                android:fontFamily="@font/ar_one_sans_medium"
-                android:gravity="start|center_vertical"
-                android:minWidth="120dp"
-                android:text="@string/dis_biker"
-                android:textColor="@color/primaryDarkBlack"
-                android:textSize="14sp" />
+                android:orientation="horizontal">
 
-            <RadioButton
-                android:id="@+id/rd2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:background="@drawable/backgroud_radio_button"
-                android:buttonTint="@color/primaryDarkBlack"
-                android:fontFamily="@font/ar_one_sans_medium"
-                android:gravity="start|center_vertical"
-                android:minWidth="120dp"
-                android:text="@string/no_dis_biker"
-                android:textColor="@color/primaryDarkBlack"
-                android:textSize="14sp" />
+                <RadioButton
+                    android:id="@+id/rd4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/backgroud_radio_button"
+                    android:buttonTint="@color/primaryDarkBlack"
+                    android:checked="true"
+                    android:fontFamily="@font/ar_one_sans_medium"
+                    android:gravity="start|center_vertical"
+                    android:minWidth="120dp"
+                    android:text="@string/all_biker"
+                    android:textColor="@color/primaryDarkBlack"
+                    android:textSize="14sp" />
 
-            <RadioButton
-                android:id="@+id/rd3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:background="@drawable/backgroud_radio_button"
-                android:buttonTint="@color/primaryDarkBlack"
-                android:fontFamily="@font/ar_one_sans_medium"
-                android:gravity="start|center_vertical"
-                android:minWidth="120dp"
-                android:text="@string/cancel_biker"
-                android:textColor="@color/primaryDarkBlack"
-                android:textSize="14sp" />
+                <RadioButton
+                    android:id="@+id/rd1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/backgroud_radio_button"
+                    android:buttonTint="@color/primaryDarkBlack"
+                    android:fontFamily="@font/ar_one_sans_medium"
+                    android:gravity="start|center_vertical"
+                    android:minWidth="120dp"
+                    android:text="@string/dis_biker"
+                    android:textColor="@color/primaryDarkBlack"
+                    android:textSize="14sp" />
 
-            <RadioButton
-                android:id="@+id/rd4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:background="@drawable/backgroud_radio_button"
-                android:buttonTint="@color/primaryDarkBlack"
-                android:fontFamily="@font/ar_one_sans_medium"
-                android:gravity="start|center_vertical"
-                android:minWidth="120dp"
-                android:text="@string/all_biker"
-                android:textColor="@color/primaryDarkBlack"
-                android:textSize="14sp" />
+                <RadioButton
+                    android:id="@+id/rd2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/backgroud_radio_button"
+                    android:buttonTint="@color/primaryDarkBlack"
+                    android:fontFamily="@font/ar_one_sans_medium"
+                    android:gravity="start|center_vertical"
+                    android:minWidth="120dp"
+                    android:text="@string/no_dis_biker"
+                    android:textColor="@color/primaryDarkBlack"
+                    android:textSize="14sp" />
 
-        </RadioGroup>
+                <RadioButton
+                    android:id="@+id/rd3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/backgroud_radio_button"
+                    android:buttonTint="@color/primaryDarkBlack"
+                    android:fontFamily="@font/ar_one_sans_medium"
+                    android:gravity="start|center_vertical"
+                    android:minWidth="120dp"
+                    android:text="@string/man_biker"
+                    android:textColor="@color/primaryDarkBlack"
+                    android:textSize="14sp" />
 
-    </HorizontalScrollView>
+            </RadioGroup>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/subContent"
-        android:layout_width="0dp"
-        android:layout_height="4dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView">
+        </HorizontalScrollView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/subContent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <com.example.umg_moto_xpress_android.component.recylcer.ItemBikerListRecycler
+            android:id="@+id/contentSearch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:descriptionMessageEmpty="@string/des_isEmpty"
+            app:textTitle="Buscando"
+            app:titleMessageEmpty="@string/title_isEmpty" />
+
+        <com.example.umg_moto_xpress_android.component.recylcer.ItemBikerListRecycler
+            android:id="@+id/contentRecycler1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:descriptionMessageEmpty="@string/des_isEmpty"
+            app:textTitle="Disponible"
+            app:titleMessageEmpty="@string/title_isEmpty" />
+
+        <com.example.umg_moto_xpress_android.component.recylcer.ItemBikerListRecycler
+            android:id="@+id/contentRecycler2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:descriptionMessageEmpty="@string/des_isEmpty"
+            app:textTitle="No Disponible"
+            app:titleMessageEmpty="@string/title_isEmpty" />
+
+        <com.example.umg_moto_xpress_android.component.recylcer.ItemBikerListRecycler
+            android:id="@+id/contentRecycler3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:descriptionMessageEmpty="@string/des_isEmpty"
+            app:textTitle="Mantenimiento"
+            app:titleMessageEmpty="@string/title_isEmpty" />
+
+    </LinearLayout>
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginTop="8dp"
         android:fillViewport="true"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/subContent">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <com.example.umg_moto_xpress_android.component.recylcer.ItemBikerListRecycler
-                android:id="@+id/contentRecycler1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:descriptionMessageEmpty="@string/des_isEmpty"
-                app:textTitle="Disponible"
-                app:titleMessageEmpty="@string/title_isEmpty" />
-
-            <com.example.umg_moto_xpress_android.component.recylcer.ItemBikerListRecycler
-                android:id="@+id/contentRecycler2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:descriptionMessageEmpty="@string/des_isEmpty"
-                app:textTitle="No Disponible"
-                app:titleMessageEmpty="@string/title_isEmpty" />
-
-            <com.example.umg_moto_xpress_android.component.recylcer.ItemBikerListRecycler
-                android:id="@+id/contentRecycler3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:descriptionMessageEmpty="@string/des_isEmpty"
-                app:textTitle="Cancelados Disponible"
-                app:titleMessageEmpty="@string/title_isEmpty" />
-
-        </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
 

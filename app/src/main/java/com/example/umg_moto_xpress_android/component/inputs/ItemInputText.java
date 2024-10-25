@@ -89,4 +89,7 @@ public class ItemInputText extends ConstraintLayout {
         return binding.editTextText;
     }
 
+    public boolean isEmptyText(){
+        return !binding.editTextText.getText().toString().trim().isEmpty();
+    }
 }

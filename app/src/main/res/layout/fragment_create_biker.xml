@@ -24,10 +24,11 @@
                 android:layout_height="match_parent">
 
                 <Button
-                    android:id="@+id/button"
+                    android:id="@+id/btnContinue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Button"
+                    android:text="Crear Moto"
+                    android:enabled="false"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
@@ -91,7 +92,7 @@
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="16dp"
                     android:orientation="vertical"
-                    app:layout_constraintBottom_toTopOf="@+id/button"
+                    app:layout_constraintBottom_toTopOf="@+id/btnContinue"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/btnAddImage"
@@ -99,38 +100,59 @@
 
 
                     <com.example.umg_moto_xpress_android.component.inputs.ItemInputText
+                        android:id="@+id/componentName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:inputType="text|textAutoComplete"
                         app:textHidTitleInput="Nombre" />
 
                     <com.example.umg_moto_xpress_android.component.inputs.ItemInputText
+                        android:id="@+id/componentde"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         app:inputType="text|textAutoComplete"
-                        app:textHidTitleInput="Nombre" />
+                        app:textHidTitleInput="Descripcion" />
 
                     <com.example.umg_moto_xpress_android.component.inputs.ItemInputText
+                        android:id="@+id/componentCili"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         app:inputType="text|textAutoComplete"
-                        app:textHidTitleInput="Nombre" />
+                        app:textHidTitleInput="Cilindraje" />
 
                     <com.example.umg_moto_xpress_android.component.inputs.ItemInputText
+                        android:id="@+id/componentCapaci"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        app:inputType="text|textAutoComplete"
-                        app:textHidTitleInput="Nombre" />
+                        app:inputType="number"
+                        app:textHidTitleInput="Capacidad" />
 
                     <com.example.umg_moto_xpress_android.component.inputs.ItemInputText
+                        android:id="@+id/componentNameMo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         app:inputType="text|textAutoComplete"
-                        app:textHidTitleInput="Nombre" />
+                        app:textHidTitleInput="Nombre Modelo" />
+
+                    <com.example.umg_moto_xpress_android.component.inputs.ItemInputText
+                        android:id="@+id/componentYear"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        app:inputType="number"
+                        app:textHidTitleInput="Año del Modelo" />
+
+                    <com.example.umg_moto_xpress_android.component.inputs.ItemInputText
+                        android:id="@+id/componentMar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        app:inputType="text"
+                        app:textHidTitleInput="Marca Modelo" />
 
                 </LinearLayout>
 

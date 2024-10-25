@@ -1,5 +1,6 @@
 package com.example.umg_moto_xpress_android.adapters.users;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,9 +16,14 @@ import java.util.List;
 public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.ViewHolder>{
 
     private List<UserDataModel> userDataModelList;
+    private ActionClickUser actionClickUser;
 
     public UserListAdapter(List<UserDataModel> userDataModelList) {
         this.userDataModelList = userDataModelList;
+    }
+
+    public void setActionClickUser(ActionClickUser actionClickUser) {
+        this.actionClickUser = actionClickUser;
     }
 
     @NonNull
@@ -50,6 +56,21 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.ViewHo
             binding.txtEmail.setText(item.getEmail());
             binding.txtName.setText(item.getName());
             binding.txtLastname.setText(item.getLastname());
+
+            binding.btnDelete.setOnClickListener(view -> {
+                if (actionClickUser != null)
+                    actionClickUser.deleteUser(item.getIdUser());
+            });
         }
+    }
+
+    public interface ActionClickUser{
+        void deleteUser(String id);
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    public void updateDataList(List<UserDataModel> userDataModelList){
+        this.userDataModelList = userDataModelList;
+        notifyDataSetChanged();
     }
 }

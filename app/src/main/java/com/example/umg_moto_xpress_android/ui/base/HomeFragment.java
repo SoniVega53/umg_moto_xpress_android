@@ -54,12 +54,11 @@ public class HomeFragment extends BaseFragment {
         carouselHomeDataList = bikerListViewModel.createListCarouselHome(requireActivity());
 
         if (savedInstanceState == null) {
-            listBikerFragment = new ListBikerFragment(true);
-            addChildFragmentManager(listBikerFragment,binding.fragmentList.getId());
-
             Fragment carousel = new CarouselFragment(true,false,false,carouselHomeDataList,null);
             addChildFragmentManager(carousel,binding.carousel.getId());
         }
+        getServiceBikerDis(savedInstanceState);
+
 
         binding.bottomNavigation.setOnNavigationItemSelectedListener(item -> {
             if (item.getItemId() == R.id.reservation){
@@ -109,4 +108,32 @@ public class HomeFragment extends BaseFragment {
         });
         dialog.show(getChildFragmentManager(), OptionMenuDialog.TAG);
     }
+
+    private void getServiceBikerDis(Bundle savedInstanceState){
+        if (bikerListViewModel.getBikerListDisponibles() == null){
+            bikerListViewModel.getBikerListDisponibles(false);
+            loadingShow(true);
+        }
+
+        sleepService(() -> {
+            bikerListViewModel.getBikerListDisponibles().observe(requireActivity(), response -> {
+                try {
+                    if (savedInstanceState == null) {
+                        listBikerFragment = new ListBikerFragment(response,true,false,false,0,item -> {
+                            clearOnBackPressedCall();
+                            navigation(binding.getRoot(), R.id.action_homeFragment_to_detailsBikerFragment);
+                        });
+                        addChildFragmentManagerDelete(listBikerFragment,binding.fragmentList.getId());
+                    }
+                    loadingShow(false);
+                }catch (Exception e){
+                    dialogMessage(getString(R.string.title_error),getString(R.string.message_error),2);
+                    loadingShow(false);
+                }
+            });
+        },500);
+
+
+    }
+
 }

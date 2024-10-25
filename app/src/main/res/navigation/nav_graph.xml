@@ -27,6 +27,9 @@
         <action
             android:id="@+id/action_homeFragment_to_inventarioBikerFragment"
             app:destination="@id/inventarioBikerFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_detailsBikerFragment"
+            app:destination="@id/detailsBikerFragment" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -53,12 +56,20 @@
         android:id="@+id/reservationBikerFragment"
         android:name="com.example.umg_moto_xpress_android.ui.biker.ReservationBikerFragment"
         android:label="fragment_reservation_biker"
-        tools:layout="@layout/fragment_reservation_biker" />
+        tools:layout="@layout/fragment_reservation_biker" >
+        <action
+            android:id="@+id/action_reservationBikerFragment_to_detailsBikerFragment"
+            app:destination="@id/detailsBikerFragment" />
+    </fragment>
     <fragment
         android:id="@+id/createBikerFragment"
         android:name="com.example.umg_moto_xpress_android.ui.biker.CreateBikerFragment"
         android:label="fragment_create_biker"
-        tools:layout="@layout/fragment_create_biker" />
+        tools:layout="@layout/fragment_create_biker" >
+        <action
+            android:id="@+id/action_createBikerFragment_to_addBikerInventaryFragment"
+            app:destination="@id/addBikerInventaryFragment" />
+    </fragment>
     <fragment
         android:id="@+id/informeBikerFragment"
         android:name="com.example.umg_moto_xpress_android.ui.bitacora.InformeBikerFragment"
@@ -78,6 +89,20 @@
         android:id="@+id/inventarioBikerFragment"
         android:name="com.example.umg_moto_xpress_android.ui.biker.InventarioBikerFragment"
         android:label="fragment_inventary_biker"
-        tools:layout="@layout/fragment_inventary_biker" />
+        tools:layout="@layout/fragment_inventary_biker" >
+        <action
+            android:id="@+id/action_inventarioBikerFragment_to_detailsBikerFragment"
+            app:destination="@id/detailsBikerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailsBikerFragment"
+        android:name="com.example.umg_moto_xpress_android.ui.biker.process.DetailsBikerFragment"
+        android:label="fragment_details_biker"
+        tools:layout="@layout/fragment_details_biker" />
+    <fragment
+        android:id="@+id/addBikerInventaryFragment"
+        android:name="com.example.umg_moto_xpress_android.ui.biker.AddBikerInventaryFragment"
+        android:label="fragment_add_biker_inventary"
+        tools:layout="@layout/fragment_add_biker_inventary" />
 
 </navigation>

@@ -1,5 +1,6 @@
 package com.example.umg_moto_xpress_android.adapters.biker;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.umg_moto_xpress_android.R;
 import com.example.umg_moto_xpress_android.databinding.ItemCardBikerBinding;
 import com.example.umg_moto_xpress_android.models.data.BikerItemModel;
+import com.example.umg_moto_xpress_android.models.data.UserDataModel;
 
 import java.util.List;
 
@@ -18,10 +20,16 @@ public class ListBikerAdapterRecyclerView extends RecyclerView.Adapter<ListBiker
 
     private List<BikerItemModel> bikerList;
     private Context context;
+    private OnclickAction onclickAction;
 
-    public ListBikerAdapterRecyclerView(List<BikerItemModel> bikerList,Context context) {
+    public ListBikerAdapterRecyclerView(List<BikerItemModel> bikerList,Context context,OnclickAction onclickAction) {
         this.bikerList = bikerList;
         this.context = context;
+        this.onclickAction = onclickAction;
+    }
+
+    public void setOnclickAction(OnclickAction onclickAction) {
+        this.onclickAction = onclickAction;
     }
 
     @NonNull
@@ -60,9 +68,16 @@ public class ListBikerAdapterRecyclerView extends RecyclerView.Adapter<ListBiker
 
             binding.txtTitle.setText(item.getTitle());
             binding.txtDes.setText(item.getDescription());
+            binding.txtPrice.setText("Q.".concat(item.getValue()).concat(".00"));
 
             binding.cardPrice.setCardBackgroundColor(color);
             binding.card.setStrokeColor(color);
+
+            binding.card.setOnClickListener(view -> {
+                if (onclickAction != null){
+                    onclickAction.actionClick(item);
+                }
+            });
         }
 
         private int getColor(BikerItemModel item){
@@ -72,5 +87,15 @@ public class ListBikerAdapterRecyclerView extends RecyclerView.Adapter<ListBiker
                 return colors[0];
             }
         }
+    }
+
+    public interface OnclickAction{
+        void actionClick(BikerItemModel item);
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    public void updateDataList(List<BikerItemModel> updateList){
+        this.bikerList = updateList;
+        notifyDataSetChanged();
     }
 }

@@ -6,6 +6,10 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class UserProfileData {
+    @SerializedName("idUsuario")
+    @Expose
+    private String idUser;
+
     @SerializedName("username")
     @Expose
     private String username;
@@ -52,5 +56,13 @@ public class UserProfileData {
 
     public void setPerson(PersonData person) {
         this.person = person;
+    }
+
+    public String getIdUser() {
+        return idUser;
+    }
+
+    public void setIdUser(String idUser) {
+        this.idUser = idUser;
     }
 }

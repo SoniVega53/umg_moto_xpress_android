@@ -13,7 +13,7 @@
         android:layout_marginTop="2dp"
         android:layout_marginEnd="2dp"
         android:layout_marginBottom="2dp"
-        app:cardBackgroundColor="@color/white"
+        app:cardBackgroundColor="@color/secondGray"
         app:cardCornerRadius="10dp"
         app:cardPreventCornerOverlap="true"
         app:cardUseCompatPadding="false"
@@ -32,7 +32,7 @@
             android:layout_marginTop="4dp"
             android:layout_marginEnd="4dp"
             android:layout_marginBottom="4dp"
-            android:background="@color/white"
+            android:background="@color/secondGray"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -48,6 +48,7 @@
                 android:paddingStart="8dp"
                 android:paddingEnd="8dp"
                 android:text="jsfdhgafs dfaskdgh"
+                android:textColor="@color/primaryDarkGray"
                 android:textSize="12sp" />
 
             <TextView
@@ -61,7 +62,7 @@
                 android:paddingStart="8dp"
                 android:paddingEnd="8dp"
                 android:paddingBottom="4dp"
-                android:textColor="#BAADAD"
+                android:textColor="@color/primaryDarkBlack"
                 android:textSize="12sp"
                 android:visibility="gone" />
 

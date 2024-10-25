@@ -96,4 +96,8 @@ public class ItemBikerListRecycler extends ConstraintLayout {
         isVisible = false;
         showRecycler();
     }
+
+    public void setTextTitle(String textTitle){
+        binding.txtTitle.setText(textTitle);
+    }
 }

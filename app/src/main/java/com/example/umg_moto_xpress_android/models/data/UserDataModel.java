@@ -2,15 +2,25 @@ package com.example.umg_moto_xpress_android.models.data;
 
 public class UserDataModel {
     private String userName;
+    private String idUser;
     private String email;
     private String name;
     private String lastname;
 
-    public UserDataModel(String userName, String email, String name, String lastname) {
+    public UserDataModel(String userName, String email, String name, String lastname,String idUser) {
         this.userName = userName;
         this.email = email;
         this.name = name;
         this.lastname = lastname;
+        this.idUser = idUser;
+    }
+
+    public String getIdUser() {
+        return idUser != null ? idUser :"";
+    }
+
+    public void setIdUser(String idUser) {
+        this.idUser = idUser;
     }
 
     public String getUserName() {

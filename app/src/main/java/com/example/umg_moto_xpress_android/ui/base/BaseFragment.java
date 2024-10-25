@@ -3,6 +3,8 @@ package com.example.umg_moto_xpress_android.ui.base;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -19,6 +21,7 @@ import com.example.umg_moto_xpress_android.dialog.message.DetailsMessageInf;
 import com.example.umg_moto_xpress_android.models.data.UserDecodeData;
 import com.example.umg_moto_xpress_android.tools.SharedPreferencesTool;
 import com.example.umg_moto_xpress_android.tools.StringTool;
+import com.example.umg_moto_xpress_android.viewmodel.BikerListViewModel;
 import com.example.umg_moto_xpress_android.viewmodel.LoginViewModel;
 import com.example.umg_moto_xpress_android.viewmodel.UserViewModel;
 import com.google.android.material.textfield.TextInputEditText;
@@ -31,10 +34,12 @@ public class BaseFragment extends Fragment {
 
     protected LoginViewModel loginViewModel;
     protected UserViewModel userViewModel;
+    protected BikerListViewModel bikerListViewModel;
 
     protected void initViewModel(){
         loginViewModel = new ViewModelProvider(requireActivity()).get(LoginViewModel.class);
         userViewModel = new ViewModelProvider(requireActivity()).get(UserViewModel.class);
+        bikerListViewModel = new ViewModelProvider(requireActivity()).get(BikerListViewModel.class);
     }
 
     @Override
@@ -203,5 +208,26 @@ public class BaseFragment extends Fragment {
                     .add(idComponent, fragment) // Usa el ID de tu FrameLayout
                     .commit();
         }
+    }
+
+    protected void addChildFragmentManagerDelete(Fragment fragment, int idComponent) {
+        Fragment fragExs = getChildFragmentManager().findFragmentById(idComponent);
+        if (fragExs != null) {
+            // Si el fragmento ya existe, elimínalo primero
+            getChildFragmentManager().beginTransaction()
+                    .remove(fragExs)
+                    .commit();
+        }
+
+        // Agrega el nuevo fragmento si es válido
+        if (fragment != null) {
+            getChildFragmentManager().beginTransaction()
+                    .add(idComponent, fragment) // Usa el ID de tu FrameLayout
+                    .commit();
+        }
+    }
+
+    protected void sleepService(Runnable runnable, int mili){
+        new Handler(Looper.getMainLooper()).postDelayed(runnable, mili);
     }
 }

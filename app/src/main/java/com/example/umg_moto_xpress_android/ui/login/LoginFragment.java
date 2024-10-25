@@ -59,7 +59,6 @@ public class LoginFragment extends BaseFragment {
 
         binding.btnAccept.setOnClickListener(view -> {
             getServiceLogin();
-           // navigation(binding.getRoot(),R.id.action_loginFragment_to_homeFragment);
             clearInputs();
         });
 
@@ -71,7 +70,9 @@ public class LoginFragment extends BaseFragment {
         });
 
         binding.ipConfig.setOnClickListener(view -> {
-            showInputDialog();
+           // showInputDialog();
+            binding.txtEditUser.setText("admin");
+            binding.txtEditPass.setText("admin");
         });
 
         return binding.getRoot();

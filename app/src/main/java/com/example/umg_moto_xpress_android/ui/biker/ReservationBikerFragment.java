@@ -12,10 +12,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.umg_moto_xpress_android.R;
 import com.example.umg_moto_xpress_android.databinding.FragmentReservationBikerBinding;
 import com.example.umg_moto_xpress_android.databinding.ItemCardBikerBinding;
+import com.example.umg_moto_xpress_android.dialog.bottomSheet.BottomDialogReservation;
 import com.example.umg_moto_xpress_android.ui.base.BaseFragment;
 import com.example.umg_moto_xpress_android.ui.carousel.CarouselFragment;
 import com.example.umg_moto_xpress_android.viewmodel.BikerListViewModel;
@@ -35,14 +37,11 @@ import java.util.Map;
 public class ReservationBikerFragment extends BaseFragment {
 
     private FragmentReservationBikerBinding binding;
-    private BikerListViewModel bikerListViewModel;
-    private List<CarouselItem> listCarouselItem;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        bikerListViewModel = new ViewModelProvider(requireActivity()).get(BikerListViewModel.class);
-
+        initViewModel();
     }
 
     @Override
@@ -52,19 +51,41 @@ public class ReservationBikerFragment extends BaseFragment {
         binding = FragmentReservationBikerBinding.inflate(inflater,container,false);
         functionFocusFragment(binding.getRoot());
         logoutLogin(binding.getRoot());
-        listCarouselItem = bikerListViewModel.createListCarousel();
 
-        if (savedInstanceState == null) {
-            Fragment newFragment = new ListBikerFragment(false);
-            addChildFragmentManager(newFragment,binding.fragmentList.getId());
-
-//            Fragment carousel = new CarouselFragment(false,false,listCarouselItem,null);
-//            addChildFragmentManager(carousel,binding.carousel.getId());
-        }
-
-
+        getServiceBikerRes(savedInstanceState);
 
 
         return binding.getRoot();
     }
+
+    private void getServiceBikerRes(Bundle savedInstanceState){
+        if (bikerListViewModel.getBikerListReservadas() == null){
+            bikerListViewModel.getBikerListReservadas(false);
+        }
+        loadingShow(true);
+        sleepService(() -> {
+            bikerListViewModel.getBikerListReservadas().observe(requireActivity(), response -> {
+                try {
+                    if (savedInstanceState == null) {
+                        Fragment listBikerFragment = new ListBikerFragment(response,true,true,false,2,item -> {
+                            clearOnBackPressedCall();
+                            Bundle bundle = new Bundle();
+                            bundle.putBoolean("reservation",true);
+                            bundle.putBoolean("isActiveButton",item.getType() == 0);
+                            navigation(binding.getRoot(), R.id.action_reservationBikerFragment_to_detailsBikerFragment,bundle);
+                        });
+
+                        addChildFragmentManagerDelete(listBikerFragment,binding.fragmentList.getId());
+                    }
+                    loadingShow(false);
+                }catch (Exception e){
+                    dialogMessage(getString(R.string.title_error),getString(R.string.message_error),2);
+                    loadingShow(false);
+                }
+            });
+        },500);
+
+
+    }
+
 }

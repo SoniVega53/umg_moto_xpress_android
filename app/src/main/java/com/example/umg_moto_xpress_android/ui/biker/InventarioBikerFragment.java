@@ -20,6 +20,7 @@ public class InventarioBikerFragment extends BaseFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        initViewModel();
     }
 
     @Override
@@ -31,9 +32,20 @@ public class InventarioBikerFragment extends BaseFragment {
         functionFocusFragment(binding.getRoot());
         logoutLogin(binding.getRoot());
 
+
         if (savedInstanceState == null) {
-            Fragment newFragment = new ListBikerFragment(false);
-            addChildFragmentManager(newFragment,binding.fragmentList.getId());
+            if (!getUserDecodeData().getRole().toLowerCase().equals("cliente")){
+                Fragment newFragment = new ListBikerFragment(bikerListViewModel.listBikerAll(),true,true,true,1,item -> {
+                    navigation(binding.getRoot(), R.id.action_inventarioBikerFragment_to_detailsBikerFragment);
+                });
+                addChildFragmentManager(newFragment,binding.fragmentList.getId());
+            }else {
+                Fragment newFragment = new ListBikerFragment(bikerListViewModel.listBikerAll(),true,false,false,1,item -> {
+                    navigation(binding.getRoot(), R.id.action_inventarioBikerFragment_to_detailsBikerFragment);
+                });
+                addChildFragmentManager(newFragment,binding.fragmentList.getId());
+            }
+
 
 //            Fragment carousel = new CarouselFragment(false,false,listCarouselItem,null);
 //            addChildFragmentManager(carousel,binding.carousel.getId());
