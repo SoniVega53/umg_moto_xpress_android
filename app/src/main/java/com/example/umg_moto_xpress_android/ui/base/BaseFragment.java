@@ -11,6 +11,7 @@ import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.example.umg_moto_xpress_android.R;
@@ -18,6 +19,8 @@ import com.example.umg_moto_xpress_android.dialog.message.DetailsMessageInf;
 import com.example.umg_moto_xpress_android.models.data.UserDecodeData;
 import com.example.umg_moto_xpress_android.tools.SharedPreferencesTool;
 import com.example.umg_moto_xpress_android.tools.StringTool;
+import com.example.umg_moto_xpress_android.viewmodel.LoginViewModel;
+import com.example.umg_moto_xpress_android.viewmodel.UserViewModel;
 import com.google.android.material.textfield.TextInputEditText;
 
 public class BaseFragment extends Fragment {
@@ -25,6 +28,14 @@ public class BaseFragment extends Fragment {
     private OnBackPressedCallback callback;
     private boolean callbackEnabled = true;
     protected boolean focusFragment = false;
+
+    protected LoginViewModel loginViewModel;
+    protected UserViewModel userViewModel;
+
+    protected void initViewModel(){
+        loginViewModel = new ViewModelProvider(requireActivity()).get(LoginViewModel.class);
+        userViewModel = new ViewModelProvider(requireActivity()).get(UserViewModel.class);
+    }
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -81,6 +92,14 @@ public class BaseFragment extends Fragment {
     protected void navPopBackStack(View view, int id){
         try {
             Navigation.findNavController(view).popBackStack(id,false);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    protected void navPopBackStack(View view){
+        try {
+            Navigation.findNavController(view).popBackStack();
         }catch (Exception e){
             e.printStackTrace();
         }

@@ -11,6 +11,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.GridLayoutManager;
 
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -22,6 +23,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.umg_moto_xpress_android.R;
+import com.example.umg_moto_xpress_android.adapters.users.UserListAdapter;
 import com.example.umg_moto_xpress_android.databinding.FragmentLoginBinding;
 import com.example.umg_moto_xpress_android.models.request.LoginSingRequest;
 import com.example.umg_moto_xpress_android.repositories.MainRepositories;
@@ -31,6 +33,7 @@ import com.example.umg_moto_xpress_android.tools.StringTool;
 import com.example.umg_moto_xpress_android.ui.base.BaseFragment;
 import com.example.umg_moto_xpress_android.ui.base.HomeFragment;
 import com.example.umg_moto_xpress_android.viewmodel.LoginViewModel;
+import com.example.umg_moto_xpress_android.viewmodel.UserViewModel;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -40,12 +43,11 @@ import org.json.JSONObject;
 public class LoginFragment extends BaseFragment {
 
     private FragmentLoginBinding binding;
-    private LoginViewModel loginViewModel;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        loginViewModel = new ViewModelProvider(requireActivity()).get(LoginViewModel.class);
+        initViewModel();
     }
 
     @Override
@@ -102,6 +104,30 @@ public class LoginFragment extends BaseFragment {
                         SharedPreferencesTool.writeSecureString(requireActivity(),StringTool.LOGIN_SESSION,loginResponse.getResponse().getEntityResponse().getToken());
                         SharedPreferencesTool.writeSecureUser(requireActivity(),StringTool.LOGIN_USER,
                                 JwtDecoder.getNameDecode(loginResponse.getResponse().getEntityResponse().getToken()));
+                        getServiceDetailUser();
+                        break;
+                    case StringTool.ERROR:
+                        if (loginResponse.getResponse() != null){
+                            dialogMessage(getString(R.string.title_error),loginResponse.getResponse().getMessage(),1);
+                        }else {
+                            dialogMessage(getString(R.string.title_error),getString(R.string.message_error),2);
+                        }
+                        loadingShow(false);
+                        break;
+                }
+
+            }catch (Exception e){
+                dialogMessage(getString(R.string.title_error),getString(R.string.message_error),2);
+                loadingShow(false);
+            }
+        });
+    }
+
+    private void getServiceDetailUser(){
+        userViewModel.getUserDetailResponse(requireActivity()).observe(requireActivity(), loginResponse -> {
+            try {
+                switch (loginResponse.getStatus()){
+                    case StringTool.SUCCESS:
                         navigation(binding.getRoot(),R.id.action_loginFragment_to_homeFragment);
                         clearInputs();
                         break;

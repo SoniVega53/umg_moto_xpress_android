@@ -10,7 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout2"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="150dp"
         android:background="@drawable/backgroud_down"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -71,8 +71,9 @@
         android:id="@+id/nestedScrollView3"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
         android:fillViewport="true"
-        app:layout_constraintBottom_toTopOf="@+id/btnEdit"
+        app:layout_constraintBottom_toTopOf="@+id/btnEditPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
@@ -83,6 +84,7 @@
             android:orientation="vertical">
 
             <com.example.umg_moto_xpress_android.component.DetailsComponent
+                android:id="@+id/compName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -94,6 +96,7 @@
                 app:titleProfile="@string/name" />
 
             <com.example.umg_moto_xpress_android.component.DetailsComponent
+                android:id="@+id/compLastName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -105,6 +108,7 @@
                 app:titleProfile="@string/lastName" />
 
             <com.example.umg_moto_xpress_android.component.DetailsComponent
+                android:id="@+id/compUserName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -116,6 +120,7 @@
                 app:titleProfile="@string/username" />
 
             <com.example.umg_moto_xpress_android.component.DetailsComponent
+                android:id="@+id/compPhone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -127,6 +132,7 @@
                 app:titleProfile="@string/phone" />
 
             <com.example.umg_moto_xpress_android.component.DetailsComponent
+                android:id="@+id/compAddress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -138,6 +144,7 @@
                 app:titleProfile="@string/address" />
 
             <com.example.umg_moto_xpress_android.component.DetailsComponent
+                android:id="@+id/compEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -147,17 +154,30 @@
                 app:drawImageProfile="@drawable/envelope_solid"
                 app:textDesProfile="svega@gmail.com"
                 app:titleProfile="@string/email" />
+
+            <Button
+                android:id="@+id/btnEdit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:text="Editar"
+                app:icon="@drawable/pen_solid" />
+
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
     <Button
-        android:id="@+id/btnEdit"
+        android:id="@+id/btnEditPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
         android:layout_marginBottom="16dp"
-        android:text="Editar"
+        android:text="Cambiar Contraseña"
         app:icon="@drawable/pen_solid"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

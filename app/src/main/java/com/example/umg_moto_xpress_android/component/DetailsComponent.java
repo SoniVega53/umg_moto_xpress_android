@@ -67,4 +67,8 @@ public class DetailsComponent extends ConstraintLayout {
         binding.txtTitle.setText(title);
         binding.txtDes.setText(desc);
     }
+
+    public void printDataDetails(String desc){
+        binding.txtDes.setText(desc);
+    }
 }

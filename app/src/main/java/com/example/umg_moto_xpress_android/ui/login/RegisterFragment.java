@@ -20,17 +20,18 @@ import com.example.umg_moto_xpress_android.tools.SimpleTextWatcher;
 import com.example.umg_moto_xpress_android.tools.StringTool;
 import com.example.umg_moto_xpress_android.ui.base.BaseFragment;
 import com.example.umg_moto_xpress_android.viewmodel.LoginViewModel;
+import com.example.umg_moto_xpress_android.viewmodel.UserViewModel;
 
 
 public class RegisterFragment extends BaseFragment {
 
     private FragmentRegisterBinding binding;
-    private LoginViewModel loginViewModel;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        loginViewModel = new ViewModelProvider(requireActivity()).get(LoginViewModel.class);
+        initViewModel();
     }
 
     @Override
@@ -67,6 +68,7 @@ public class RegisterFragment extends BaseFragment {
 
 
     private void getServiceLogin(){
+        loadingShow(true);
         loginViewModel.setLoginResponseMutableLiveData(requireActivity(),new LoginSingRequest(
                 binding.txtEditUser.getText().toString().trim(),
                 binding.txtEditPass.getText().toString().trim()
@@ -79,7 +81,31 @@ public class RegisterFragment extends BaseFragment {
                         SharedPreferencesTool.writeSecureString(requireActivity(),StringTool.LOGIN_SESSION,loginResponse.getResponse().getEntityResponse().getToken());
                         SharedPreferencesTool.writeSecureUser(requireActivity(),StringTool.LOGIN_USER,
                                 JwtDecoder.getNameDecode(loginResponse.getResponse().getEntityResponse().getToken()));
-                          navigation(binding.getRoot(),R.id.action_registerFragment_to_homeFragment);
+                        getServiceDetailUser();
+                        break;
+                    case StringTool.ERROR:
+                        if (loginResponse.getResponse() != null){
+                            dialogMessage(getString(R.string.title_error),loginResponse.getResponse().getMessage(),1);
+                        }else {
+                            dialogMessage(getString(R.string.title_error),getString(R.string.message_error),2);
+                        }
+                        loadingShow(false);
+                        break;
+                }
+
+            }catch (Exception e){
+                dialogMessage(getString(R.string.title_error),getString(R.string.message_error),2);
+                loadingShow(false);
+            }
+        });
+    }
+
+    private void getServiceDetailUser(){
+        userViewModel.getUserDetailResponse(requireActivity()).observe(requireActivity(), loginResponse -> {
+            try {
+                switch (loginResponse.getStatus()){
+                    case StringTool.SUCCESS:
+                        navigation(binding.getRoot(),R.id.action_loginFragment_to_homeFragment);
                         break;
                     case StringTool.ERROR:
                         if (loginResponse.getResponse() != null){

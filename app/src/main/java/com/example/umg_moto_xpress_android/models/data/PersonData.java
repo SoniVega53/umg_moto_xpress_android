@@ -48,7 +48,7 @@ public class PersonData {
     }
 
     public String getPhone() {
-        return phone;
+        return phone != null ? phone : "";
     }
 
     public void setPhone(String phone) {
@@ -56,7 +56,7 @@ public class PersonData {
     }
 
     public String getAddress() {
-        return address;
+        return address != null ? address : "";
     }
 
     public void setAddress(String address) {
