@@ -59,7 +59,7 @@ public class LoginFragment extends BaseFragment {
 
         binding.btnAccept.setOnClickListener(view -> {
             getServiceLogin();
-            clearInputs();
+
         });
 
         setListenerTextWatcher(binding.txtEditUser);
@@ -102,6 +102,7 @@ public class LoginFragment extends BaseFragment {
             try {
                 switch (loginResponse.getStatus()){
                     case StringTool.SUCCESS:
+                        clearInputs();
                         SharedPreferencesTool.writeSecureString(requireActivity(),StringTool.LOGIN_SESSION,loginResponse.getResponse().getEntityResponse().getToken());
                         SharedPreferencesTool.writeSecureUser(requireActivity(),StringTool.LOGIN_USER,
                                 JwtDecoder.getNameDecode(loginResponse.getResponse().getEntityResponse().getToken()));

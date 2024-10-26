@@ -133,7 +133,6 @@ public class RegisterFragment extends BaseFragment {
         ));
 
         loginViewModel.setRegisterResponse(requireActivity(),request);
-
         loginViewModel.getRegisterResponse().observe(requireActivity(), loginResponse -> {
             try {
                 switch (loginResponse.getStatus()){
